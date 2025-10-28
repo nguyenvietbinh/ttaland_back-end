@@ -8,7 +8,8 @@ Globals:
     Runtime: python3.9
     Environment:
       Variables:
-        TABLE_NAME: !Ref UsersTable
+        USERS_TABLE: !Ref UsersTable
+        PRODUCTS_TABLE: !Ref ProductsTable  # 👈 thêm biến môi trường mới
 
 Resources:
   BackendFunction:
@@ -19,6 +20,8 @@ Resources:
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref UsersTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProductsTable  
       Events:
         Api:
           Type: Api
@@ -26,7 +29,7 @@ Resources:
             Path: /{proxy+}
             Method: ANY
             Auth:
-              AuthorizationType: AWS_IAM  # Sử dụng IAM auth
+              AuthorizationType: AWS_IAM
 
   UsersTable:
     Type: AWS::DynamoDB::Table
@@ -37,6 +40,18 @@ Resources:
           AttributeType: S
       KeySchema:
         - AttributeName: user_id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  ProductsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Products
+      AttributeDefinitions:
+        - AttributeName: product_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: product_id
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
 
