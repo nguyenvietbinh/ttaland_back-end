@@ -42,17 +42,17 @@ def lambda_handler(event, context):
             product_id = path.split('/')[-1]
             return delete_product(product_id, cors_headers)
         else:
-            return build_response(405, {'error': 'Method not allowed'}, cors_headers)
+            return response(405, {'error': 'Method not allowed'}, cors_headers)
     except Exception as e:
-        return build_response(500, {'error': str(e)}, cors_headers)
+        return response(500, {'error': str(e)}, cors_headers)
 
 def get_all_products(headers):
     try:
         response = products_table.scan()
         products = response.get('Items', [])
-        return build_response(200, products, headers)
+        return response(200, products, headers)
     except ClientError as e:
-        return build_response(500, {'error': e.response['Error']['Message']}, headers)
+        return response(500, {'error': e.response['Error']['Message']}, headers)
 
 def get_product(product_id, headers):
     try:
@@ -60,27 +60,27 @@ def get_product(product_id, headers):
         product = response.get('Item')
         
         if not product:
-            return build_response(404, {'error': 'Product not found'}, headers)
+            return response(404, {'error': 'Product not found'}, headers)
         
-        return build_response(200, product, headers)
+        return response(200, product, headers)
     except ClientError as e:
-        return build_response(500, {'error': e.response['Error']['Message']}, headers)
+        return response(500, {'error': e.response['Error']['Message']}, headers)
 
 def create_product(body, headers):
     try:
         if not body.get('id') or not body.get('name') or not body.get('price'):
-            return build_response(400, {'error': 'Missing required fields: id, name, price'}, headers)
+            return response(400, {'error': 'Missing required fields: id, name, price'}, headers)
         
         products_table.put_item(Item=body)
-        return build_response(201, {'message': 'Product created successfully', 'product': body}, headers)
+        return response(201, {'message': 'Product created successfully', 'product': body}, headers)
     except ClientError as e:
-        return build_response(500, {'error': e.response['Error']['Message']}, headers)
+        return response(500, {'error': e.response['Error']['Message']}, headers)
 
 def update_product(product_id, body, headers):
     try:
         response = products_table.get_item(Key={'id': product_id})
         if 'Item' not in response:
-            return build_response(404, {'error': 'Product not found'}, headers)
+            return response(404, {'error': 'Product not found'}, headers)
         
         update_expression = "SET "
         expression_attribute_names = {}
@@ -102,21 +102,20 @@ def update_product(product_id, body, headers):
             ReturnValues="ALL_NEW"
         )
         
-        return build_response(200, {'message': 'Product updated successfully'}, headers)
+        return response(200, {'message': 'Product updated successfully'}, headers)
     except ClientError as e:
-        return build_response(500, {'error': e.response['Error']['Message']}, headers)
+        return response(500, {'error': e.response['Error']['Message']}, headers)
 
 def delete_product(product_id, headers):
     try:
         products_table.delete_item(Key={'id': product_id})
-        return build_response(200, {'message': 'Product deleted successfully'}, headers)
+        return response(200, {'message': 'Product deleted successfully'}, headers)
     except ClientError as e:
-        return build_response(500, {'error': e.response['Error']['Message']}, headers)
+        return response(500, {'error': e.response['Error']['Message']}, headers)
 
-def build_response(status_code, body, headers):
-    """Hàm helper để build response"""
+def response(status_code, body, headers):
     return {
         'statusCode': status_code,
         'headers': {**headers, 'Content-Type': 'application/json'},
-        'body': json.dumps(body, ensure_ascii=False)
+        'body': json.dumps(body)
     }

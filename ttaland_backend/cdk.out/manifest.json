@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f359bb731ec4deea94795a506768b0696a8e7e4e24817988858c9a5e29397c76.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fc43024eef73a73fe7aa17f8ca2def43dd38d5ad80a8616657c9110a30a50b76.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -95,7 +95,7 @@
         "/BackendCdkStack/BackendAPI/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BackendAPIDeployment55E9271A5ffd6390db395c379d74a6ab6fe19421"
+            "data": "BackendAPIDeployment55E9271A96f0d772d314dd82653d51832395c4cb"
           }
         ],
         "/BackendCdkStack/BackendAPI/DeploymentStage.prod/Resource": [
@@ -110,10 +110,22 @@
             "data": "BackendAPIEndpointE47D1CC2"
           }
         ],
+        "/BackendCdkStack/BackendAPI/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIOPTIONS581B7095"
+          }
+        ],
         "/BackendCdkStack/BackendAPI/Default/users/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIusersF420DE50"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersOPTIONS4C0B3A5C"
           }
         ],
         "/BackendCdkStack/BackendAPI/Default/users/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..users": [
@@ -156,6 +168,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIusersid92688447"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidOPTIONSEB65B059"
           }
         ],
         "/BackendCdkStack/BackendAPI/Default/users/{id}/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..users.{id}": [
@@ -218,6 +236,12 @@
             "data": "BackendAPIproducts3BBB2246"
           }
         ],
+        "/BackendCdkStack/BackendAPI/Default/products/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsOPTIONS1D923263"
+          }
+        ],
         "/BackendCdkStack/BackendAPI/Default/products/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..products": [
           {
             "type": "aws:cdk:logicalId",
@@ -258,6 +282,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIproductsid4E8D51ED"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidOPTIONS3C1FEC6D"
           }
         ],
         "/BackendCdkStack/BackendAPI/Default/products/{id}/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..products.{id}": [

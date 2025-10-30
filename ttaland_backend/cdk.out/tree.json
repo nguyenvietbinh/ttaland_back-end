@@ -263,7 +263,17 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "2c380588b33a95b06cd543666619a1c038a8ab4fb79689519aeba7db68c6e95c.zip"
+                      "s3Key": "63d4bb197c9c8cd2cb2959668dc692b48a51a7353ab9a7a73d5864ab9b54365a.zip"
+                    },
+                    "environment": {
+                      "variables": {
+                        "USERS_TABLE": {
+                          "Ref": "UsersTable9725E9C8"
+                        },
+                        "PRODUCTS_TABLE": {
+                          "Ref": "ProductsTable241ADBFF"
+                        }
+                      }
                     },
                     "handler": "user_handler.lambda_handler",
                     "role": {
@@ -327,7 +337,17 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "2c380588b33a95b06cd543666619a1c038a8ab4fb79689519aeba7db68c6e95c.zip"
+                      "s3Key": "63d4bb197c9c8cd2cb2959668dc692b48a51a7353ab9a7a73d5864ab9b54365a.zip"
+                    },
+                    "environment": {
+                      "variables": {
+                        "USERS_TABLE": {
+                          "Ref": "UsersTable9725E9C8"
+                        },
+                        "PRODUCTS_TABLE": {
+                          "Ref": "ProductsTable241ADBFF"
+                        }
+                      }
                     },
                     "handler": "product_handler.lambda_handler",
                     "role": {
@@ -408,7 +428,7 @@
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                       "aws:cdk:cloudformation:props": {
                         "deploymentId": {
-                          "Ref": "BackendAPIDeployment55E9271A5ffd6390db395c379d74a6ab6fe19421"
+                          "Ref": "BackendAPIDeployment55E9271A96f0d772d314dd82653d51832395c4cb"
                         },
                         "restApiId": {
                           "Ref": "BackendAPI4304626F"
@@ -439,6 +459,69 @@
                 "id": "Default",
                 "path": "BackendCdkStack/BackendAPI/Default",
                 "children": {
+                  "OPTIONS": {
+                    "id": "OPTIONS",
+                    "path": "BackendCdkStack/BackendAPI/Default/OPTIONS",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "BackendCdkStack/BackendAPI/Default/OPTIONS/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                          "aws:cdk:cloudformation:props": {
+                            "apiKeyRequired": false,
+                            "authorizationType": "NONE",
+                            "httpMethod": "OPTIONS",
+                            "integration": {
+                              "type": "MOCK",
+                              "requestTemplates": {
+                                "application/json": "{ statusCode: 200 }"
+                              },
+                              "integrationResponses": [
+                                {
+                                  "statusCode": "204",
+                                  "responseParameters": {
+                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                                    "method.response.header.Access-Control-Max-Age": "'86400'"
+                                  }
+                                }
+                              ]
+                            },
+                            "methodResponses": [
+                              {
+                                "statusCode": "204",
+                                "responseParameters": {
+                                  "method.response.header.Access-Control-Allow-Headers": true,
+                                  "method.response.header.Access-Control-Allow-Origin": true,
+                                  "method.response.header.Access-Control-Allow-Methods": true,
+                                  "method.response.header.Access-Control-Max-Age": true
+                                }
+                              }
+                            ],
+                            "resourceId": {
+                              "Fn::GetAtt": [
+                                "BackendAPI4304626F",
+                                "RootResourceId"
+                              ]
+                            },
+                            "restApiId": {
+                              "Ref": "BackendAPI4304626F"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                      "version": "2.100.0"
+                    }
+                  },
                   "users": {
                     "id": "users",
                     "path": "BackendCdkStack/BackendAPI/Default/users",
@@ -463,6 +546,66 @@
                         },
                         "constructInfo": {
                           "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "OPTIONS": {
+                        "id": "OPTIONS",
+                        "path": "BackendCdkStack/BackendAPI/Default/users/OPTIONS",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "BackendCdkStack/BackendAPI/Default/users/OPTIONS/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "apiKeyRequired": false,
+                                "authorizationType": "NONE",
+                                "httpMethod": "OPTIONS",
+                                "integration": {
+                                  "type": "MOCK",
+                                  "requestTemplates": {
+                                    "application/json": "{ statusCode: 200 }"
+                                  },
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "204",
+                                      "responseParameters": {
+                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "204",
+                                    "responseParameters": {
+                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                      "method.response.header.Access-Control-Max-Age": true
+                                    }
+                                  }
+                                ],
+                                "resourceId": {
+                                  "Ref": "BackendAPIusersF420DE50"
+                                },
+                                "restApiId": {
+                                  "Ref": "BackendAPI4304626F"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
                           "version": "2.100.0"
                         }
                       },
@@ -791,6 +934,66 @@
                             },
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          },
+                          "OPTIONS": {
+                            "id": "OPTIONS",
+                            "path": "BackendCdkStack/BackendAPI/Default/users/{id}/OPTIONS",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "BackendCdkStack/BackendAPI/Default/users/{id}/OPTIONS/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                  "aws:cdk:cloudformation:props": {
+                                    "apiKeyRequired": false,
+                                    "authorizationType": "NONE",
+                                    "httpMethod": "OPTIONS",
+                                    "integration": {
+                                      "type": "MOCK",
+                                      "requestTemplates": {
+                                        "application/json": "{ statusCode: 200 }"
+                                      },
+                                      "integrationResponses": [
+                                        {
+                                          "statusCode": "204",
+                                          "responseParameters": {
+                                            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                            "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                            "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                                            "method.response.header.Access-Control-Max-Age": "'86400'"
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "methodResponses": [
+                                      {
+                                        "statusCode": "204",
+                                        "responseParameters": {
+                                          "method.response.header.Access-Control-Allow-Headers": true,
+                                          "method.response.header.Access-Control-Allow-Origin": true,
+                                          "method.response.header.Access-Control-Allow-Methods": true,
+                                          "method.response.header.Access-Control-Max-Age": true
+                                        }
+                                      }
+                                    ],
+                                    "resourceId": {
+                                      "Ref": "BackendAPIusersid92688447"
+                                    },
+                                    "restApiId": {
+                                      "Ref": "BackendAPI4304626F"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                  "version": "2.100.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
                               "version": "2.100.0"
                             }
                           },
@@ -1289,6 +1492,66 @@
                           "version": "2.100.0"
                         }
                       },
+                      "OPTIONS": {
+                        "id": "OPTIONS",
+                        "path": "BackendCdkStack/BackendAPI/Default/products/OPTIONS",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "BackendCdkStack/BackendAPI/Default/products/OPTIONS/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "apiKeyRequired": false,
+                                "authorizationType": "NONE",
+                                "httpMethod": "OPTIONS",
+                                "integration": {
+                                  "type": "MOCK",
+                                  "requestTemplates": {
+                                    "application/json": "{ statusCode: 200 }"
+                                  },
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "204",
+                                      "responseParameters": {
+                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "204",
+                                    "responseParameters": {
+                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                      "method.response.header.Access-Control-Max-Age": true
+                                    }
+                                  }
+                                ],
+                                "resourceId": {
+                                  "Ref": "BackendAPIproducts3BBB2246"
+                                },
+                                "restApiId": {
+                                  "Ref": "BackendAPI4304626F"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                          "version": "2.100.0"
+                        }
+                      },
                       "GET": {
                         "id": "GET",
                         "path": "BackendCdkStack/BackendAPI/Default/products/GET",
@@ -1614,6 +1877,66 @@
                             },
                             "constructInfo": {
                               "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                              "version": "2.100.0"
+                            }
+                          },
+                          "OPTIONS": {
+                            "id": "OPTIONS",
+                            "path": "BackendCdkStack/BackendAPI/Default/products/{id}/OPTIONS",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "BackendCdkStack/BackendAPI/Default/products/{id}/OPTIONS/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                                  "aws:cdk:cloudformation:props": {
+                                    "apiKeyRequired": false,
+                                    "authorizationType": "NONE",
+                                    "httpMethod": "OPTIONS",
+                                    "integration": {
+                                      "type": "MOCK",
+                                      "requestTemplates": {
+                                        "application/json": "{ statusCode: 200 }"
+                                      },
+                                      "integrationResponses": [
+                                        {
+                                          "statusCode": "204",
+                                          "responseParameters": {
+                                            "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                            "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                            "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                                            "method.response.header.Access-Control-Max-Age": "'86400'"
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    "methodResponses": [
+                                      {
+                                        "statusCode": "204",
+                                        "responseParameters": {
+                                          "method.response.header.Access-Control-Allow-Headers": true,
+                                          "method.response.header.Access-Control-Allow-Origin": true,
+                                          "method.response.header.Access-Control-Allow-Methods": true,
+                                          "method.response.header.Access-Control-Max-Age": true
+                                        }
+                                      }
+                                    ],
+                                    "resourceId": {
+                                      "Ref": "BackendAPIproductsid4E8D51ED"
+                                    },
+                                    "restApiId": {
+                                      "Ref": "BackendAPI4304626F"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                                  "version": "2.100.0"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.Method",
                               "version": "2.100.0"
                             }
                           },

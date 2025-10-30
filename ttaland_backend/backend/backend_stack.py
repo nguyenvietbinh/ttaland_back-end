@@ -22,7 +22,7 @@ class BackendStack(Stack):
             table_name="Users_table",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.DESTROY  # Xóa khi destroy stack (dev only)
+            removal_policy=RemovalPolicy.DESTROY
         )
 
         # Bảng Products
@@ -34,7 +34,7 @@ class BackendStack(Stack):
             removal_policy=RemovalPolicy.DESTROY
         )
 
-        # IAM Role cho Lambda: Quyền DynamoDB
+        # IAM Role cho Lambda
         lambda_role = iam.Role(
             self, "LambdaDynamoDBRole",
             assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
@@ -52,7 +52,11 @@ class BackendStack(Stack):
             handler="user_handler.lambda_handler",
             code=_lambda.Code.from_asset(os.path.join(os.path.dirname(__file__), "handlers")),
             role=lambda_role,
-            timeout=Duration.seconds(30)
+            timeout=Duration.seconds(30),
+            environment={
+                "USERS_TABLE": users_table.table_name,
+                "PRODUCTS_TABLE": products_table.table_name
+            }
         )
 
         # Lambda cho Products
@@ -62,17 +66,27 @@ class BackendStack(Stack):
             handler="product_handler.lambda_handler",
             code=_lambda.Code.from_asset(os.path.join(os.path.dirname(__file__), "handlers")),
             role=lambda_role,
-            timeout=Duration.seconds(30)
+            timeout=Duration.seconds(30),
+            environment={
+                "USERS_TABLE": users_table.table_name,
+                "PRODUCTS_TABLE": products_table.table_name
+            }
         )
 
-        # API Gateway
+        # API Gateway với CORS mặc định
         api = apigw.RestApi(
             self, "BackendAPI",
             rest_api_name="Backend API",
-            description="API for Users and Products"
+            description="API for Users and Products",
+            default_cors_preflight_options=apigw.CorsOptions(
+                allow_origins=apigw.Cors.ALL_ORIGINS,  # Cho phép tất cả origins
+                allow_methods=apigw.Cors.ALL_METHODS,  # Cho phép tất cả methods
+                allow_headers=apigw.Cors.DEFAULT_HEADERS,  # Headers mặc định
+                max_age=Duration.days(1)
+            )
         )
 
-        # Resources và Methods cho Users
+        # Resources và Methods cho Users với CORS
         users_resource = api.root.add_resource("users")
         users_resource.add_method("GET", apigw.LambdaIntegration(user_lambda))
         users_resource.add_method("POST", apigw.LambdaIntegration(user_lambda))
@@ -82,7 +96,7 @@ class BackendStack(Stack):
         user_id_resource.add_method("PUT", apigw.LambdaIntegration(user_lambda))
         user_id_resource.add_method("DELETE", apigw.LambdaIntegration(user_lambda))
 
-        # Resources và Methods cho Products (tương tự)
+        # Resources và Methods cho Products
         products_resource = api.root.add_resource("products")
         products_resource.add_method("GET", apigw.LambdaIntegration(product_lambda))
         products_resource.add_method("POST", apigw.LambdaIntegration(product_lambda))
@@ -98,8 +112,3 @@ class BackendStack(Stack):
             value=api.url,
             description="URL of the API Gateway"
         )
-
-
-
-
-
