@@ -1,0 +1,357 @@
+{
+  "version": "34.0.0",
+  "artifacts": {
+    "BackendCdkStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "BackendCdkStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "BackendCdkStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "BackendCdkStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f359bb731ec4deea94795a506768b0696a8e7e4e24817988858c9a5e29397c76.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "BackendCdkStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "BackendCdkStack.assets"
+      ],
+      "metadata": {
+        "/BackendCdkStack/UsersTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "UsersTable9725E9C8"
+            }
+          }
+        ],
+        "/BackendCdkStack/UsersTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UsersTable9725E9C8"
+          }
+        ],
+        "/BackendCdkStack/ProductsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "ProductsTable241ADBFF"
+            }
+          }
+        ],
+        "/BackendCdkStack/ProductsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProductsTable241ADBFF"
+          }
+        ],
+        "/BackendCdkStack/LambdaDynamoDBRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaDynamoDBRole8A842A29"
+          }
+        ],
+        "/BackendCdkStack/LambdaDynamoDBRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaDynamoDBRoleDefaultPolicy161A9135"
+          }
+        ],
+        "/BackendCdkStack/UserLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserLambdaAD4FB23B"
+          }
+        ],
+        "/BackendCdkStack/ProductLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProductLambda4F8330F3"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPI4304626F"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIDeployment55E9271A5ffd6390db395c379d74a6ab6fe19421"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIDeploymentStageprod69A6990B"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIEndpointE47D1CC2"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersF420DE50"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..users": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersGETApiPermissionBackendCdkStackBackendAPI20ADE104GETusers00D0D13D"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/GET/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.GET..users": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersGETApiPermissionTestBackendCdkStackBackendAPI20ADE104GETusers9B375DA1"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersGET8748FA6C"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/POST/ApiPermission.BackendCdkStackBackendAPI20ADE104.POST..users": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersPOSTApiPermissionBackendCdkStackBackendAPI20ADE104POSTusersB5327692"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/POST/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.POST..users": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersPOSTApiPermissionTestBackendCdkStackBackendAPI20ADE104POSTusersE7A288C3"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersPOSTF4B1F6D8"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersid92688447"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..users.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidGETApiPermissionBackendCdkStackBackendAPI20ADE104GETusersidDB62F521"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/GET/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.GET..users.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidGETApiPermissionTestBackendCdkStackBackendAPI20ADE104GETusersid6E873822"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidGET8D4B7FDD"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/PUT/ApiPermission.BackendCdkStackBackendAPI20ADE104.PUT..users.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidPUTApiPermissionBackendCdkStackBackendAPI20ADE104PUTusersid024B7DB5"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/PUT/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.PUT..users.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidPUTApiPermissionTestBackendCdkStackBackendAPI20ADE104PUTusersid9D51FECD"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidPUTA49440E7"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/DELETE/ApiPermission.BackendCdkStackBackendAPI20ADE104.DELETE..users.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidDELETEApiPermissionBackendCdkStackBackendAPI20ADE104DELETEusersid9EB10BE2"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/DELETE/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.DELETE..users.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidDELETEApiPermissionTestBackendCdkStackBackendAPI20ADE104DELETEusersid185358AC"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/users/{id}/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIusersidDELETE6E4A81FB"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproducts3BBB2246"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..products": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsGETApiPermissionBackendCdkStackBackendAPI20ADE104GETproductsD30FE22A"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/GET/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.GET..products": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsGETApiPermissionTestBackendCdkStackBackendAPI20ADE104GETproductsEBDCFF7C"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsGET46133E10"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/POST/ApiPermission.BackendCdkStackBackendAPI20ADE104.POST..products": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsPOSTApiPermissionBackendCdkStackBackendAPI20ADE104POSTproductsDA9978C0"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/POST/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.POST..products": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsPOSTApiPermissionTestBackendCdkStackBackendAPI20ADE104POSTproductsC2E7F892"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsPOST54CD2423"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsid4E8D51ED"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/GET/ApiPermission.BackendCdkStackBackendAPI20ADE104.GET..products.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidGETApiPermissionBackendCdkStackBackendAPI20ADE104GETproductsidDF3B594A"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/GET/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.GET..products.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidGETApiPermissionTestBackendCdkStackBackendAPI20ADE104GETproductsid4529042A"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidGET8A47BA60"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/PUT/ApiPermission.BackendCdkStackBackendAPI20ADE104.PUT..products.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidPUTApiPermissionBackendCdkStackBackendAPI20ADE104PUTproductsid8049E364"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/PUT/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.PUT..products.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidPUTApiPermissionTestBackendCdkStackBackendAPI20ADE104PUTproductsid4A880132"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/PUT/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidPUT3339C063"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/DELETE/ApiPermission.BackendCdkStackBackendAPI20ADE104.DELETE..products.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidDELETEApiPermissionBackendCdkStackBackendAPI20ADE104DELETEproductsid82271314"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/DELETE/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.DELETE..products.{id}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidDELETEApiPermissionTestBackendCdkStackBackendAPI20ADE104DELETEproductsidBEADACF0"
+          }
+        ],
+        "/BackendCdkStack/BackendAPI/Default/products/{id}/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproductsidDELETEBE5C1434"
+          }
+        ],
+        "/BackendCdkStack/ApiEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiEndpoint"
+          }
+        ],
+        "/BackendCdkStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/BackendCdkStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/BackendCdkStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/BackendCdkStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "BackendCdkStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
