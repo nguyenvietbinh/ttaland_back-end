@@ -223,17 +223,17 @@
               "version": "2.100.0"
             }
           },
-          "UserLambda": {
-            "id": "UserLambda",
-            "path": "BackendCdkStack/UserLambda",
+          "BackendLambda": {
+            "id": "BackendLambda",
+            "path": "BackendCdkStack/BackendLambda",
             "children": {
               "Code": {
                 "id": "Code",
-                "path": "BackendCdkStack/UserLambda/Code",
+                "path": "BackendCdkStack/BackendLambda/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "BackendCdkStack/UserLambda/Code/Stage",
+                    "path": "BackendCdkStack/BackendLambda/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.100.0"
@@ -241,7 +241,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "BackendCdkStack/UserLambda/Code/AssetBucket",
+                    "path": "BackendCdkStack/BackendLambda/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.100.0"
@@ -255,7 +255,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/UserLambda/Resource",
+                "path": "BackendCdkStack/BackendLambda/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -263,7 +263,7 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "63d4bb197c9c8cd2cb2959668dc692b48a51a7353ab9a7a73d5864ab9b54365a.zip"
+                      "s3Key": "3fd37dd79a6954c27f709cdc154870133b397844187a57911357607e9fde4de4.zip"
                     },
                     "environment": {
                       "variables": {
@@ -275,81 +275,7 @@
                         }
                       }
                     },
-                    "handler": "user_handler.lambda_handler",
-                    "role": {
-                      "Fn::GetAtt": [
-                        "LambdaDynamoDBRole8A842A29",
-                        "Arn"
-                      ]
-                    },
-                    "runtime": "python3.9",
-                    "timeout": 30
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
-                  "version": "2.100.0"
-                }
-              }
-            },
-            "constructInfo": {
-              "fqn": "aws-cdk-lib.aws_lambda.Function",
-              "version": "2.100.0"
-            }
-          },
-          "ProductLambda": {
-            "id": "ProductLambda",
-            "path": "BackendCdkStack/ProductLambda",
-            "children": {
-              "Code": {
-                "id": "Code",
-                "path": "BackendCdkStack/ProductLambda/Code",
-                "children": {
-                  "Stage": {
-                    "id": "Stage",
-                    "path": "BackendCdkStack/ProductLambda/Code/Stage",
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.AssetStaging",
-                      "version": "2.100.0"
-                    }
-                  },
-                  "AssetBucket": {
-                    "id": "AssetBucket",
-                    "path": "BackendCdkStack/ProductLambda/Code/AssetBucket",
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
-                      "version": "2.100.0"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
-                  "version": "2.100.0"
-                }
-              },
-              "Resource": {
-                "id": "Resource",
-                "path": "BackendCdkStack/ProductLambda/Resource",
-                "attributes": {
-                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
-                  "aws:cdk:cloudformation:props": {
-                    "code": {
-                      "s3Bucket": {
-                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
-                      },
-                      "s3Key": "63d4bb197c9c8cd2cb2959668dc692b48a51a7353ab9a7a73d5864ab9b54365a.zip"
-                    },
-                    "environment": {
-                      "variables": {
-                        "USERS_TABLE": {
-                          "Ref": "UsersTable9725E9C8"
-                        },
-                        "PRODUCTS_TABLE": {
-                          "Ref": "ProductsTable241ADBFF"
-                        }
-                      }
-                    },
-                    "handler": "product_handler.lambda_handler",
+                    "handler": "handler.handler",
                     "role": {
                       "Fn::GetAtt": [
                         "LambdaDynamoDBRole8A842A29",
@@ -428,7 +354,7 @@
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                       "aws:cdk:cloudformation:props": {
                         "deploymentId": {
-                          "Ref": "BackendAPIDeployment55E9271A96f0d772d314dd82653d51832395c4cb"
+                          "Ref": "BackendAPIDeployment55E9271Af5cf3b5cb261506e542a91497d8bd314"
                         },
                         "restApiId": {
                           "Ref": "BackendAPI4304626F"
@@ -622,7 +548,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "UserLambdaAD4FB23B",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -671,7 +597,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "UserLambdaAD4FB23B",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -732,7 +658,7 @@
                                         ":lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "UserLambdaAD4FB23B",
+                                            "BackendLambdaD93C7B96",
                                             "Arn"
                                           ]
                                         },
@@ -774,7 +700,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "UserLambdaAD4FB23B",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -823,7 +749,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "UserLambdaAD4FB23B",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -884,7 +810,7 @@
                                         ":lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "UserLambdaAD4FB23B",
+                                            "BackendLambdaD93C7B96",
                                             "Arn"
                                           ]
                                         },
@@ -1010,7 +936,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "UserLambdaAD4FB23B",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -1059,7 +985,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "UserLambdaAD4FB23B",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -1120,7 +1046,7 @@
                                             ":lambda:path/2015-03-31/functions/",
                                             {
                                               "Fn::GetAtt": [
-                                                "UserLambdaAD4FB23B",
+                                                "BackendLambdaD93C7B96",
                                                 "Arn"
                                               ]
                                             },
@@ -1162,7 +1088,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "UserLambdaAD4FB23B",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -1211,7 +1137,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "UserLambdaAD4FB23B",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -1272,7 +1198,7 @@
                                             ":lambda:path/2015-03-31/functions/",
                                             {
                                               "Fn::GetAtt": [
-                                                "UserLambdaAD4FB23B",
+                                                "BackendLambdaD93C7B96",
                                                 "Arn"
                                               ]
                                             },
@@ -1314,7 +1240,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "UserLambdaAD4FB23B",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -1363,7 +1289,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "UserLambdaAD4FB23B",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -1424,7 +1350,7 @@
                                             ":lambda:path/2015-03-31/functions/",
                                             {
                                               "Fn::GetAtt": [
-                                                "UserLambdaAD4FB23B",
+                                                "BackendLambdaD93C7B96",
                                                 "Arn"
                                               ]
                                             },
@@ -1565,7 +1491,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "ProductLambda4F8330F3",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -1614,7 +1540,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "ProductLambda4F8330F3",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -1675,7 +1601,7 @@
                                         ":lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "ProductLambda4F8330F3",
+                                            "BackendLambdaD93C7B96",
                                             "Arn"
                                           ]
                                         },
@@ -1717,7 +1643,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "ProductLambda4F8330F3",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -1766,7 +1692,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "ProductLambda4F8330F3",
+                                    "BackendLambdaD93C7B96",
                                     "Arn"
                                   ]
                                 },
@@ -1827,7 +1753,7 @@
                                         ":lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "ProductLambda4F8330F3",
+                                            "BackendLambdaD93C7B96",
                                             "Arn"
                                           ]
                                         },
@@ -1953,7 +1879,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "ProductLambda4F8330F3",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -2002,7 +1928,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "ProductLambda4F8330F3",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -2063,7 +1989,7 @@
                                             ":lambda:path/2015-03-31/functions/",
                                             {
                                               "Fn::GetAtt": [
-                                                "ProductLambda4F8330F3",
+                                                "BackendLambdaD93C7B96",
                                                 "Arn"
                                               ]
                                             },
@@ -2105,7 +2031,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "ProductLambda4F8330F3",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -2154,7 +2080,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "ProductLambda4F8330F3",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -2215,7 +2141,7 @@
                                             ":lambda:path/2015-03-31/functions/",
                                             {
                                               "Fn::GetAtt": [
-                                                "ProductLambda4F8330F3",
+                                                "BackendLambdaD93C7B96",
                                                 "Arn"
                                               ]
                                             },
@@ -2257,7 +2183,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "ProductLambda4F8330F3",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -2306,7 +2232,7 @@
                                     "action": "lambda:InvokeFunction",
                                     "functionName": {
                                       "Fn::GetAtt": [
-                                        "ProductLambda4F8330F3",
+                                        "BackendLambdaD93C7B96",
                                         "Arn"
                                       ]
                                     },
@@ -2367,7 +2293,7 @@
                                             ":lambda:path/2015-03-31/functions/",
                                             {
                                               "Fn::GetAtt": [
-                                                "ProductLambda4F8330F3",
+                                                "BackendLambdaD93C7B96",
                                                 "Arn"
                                               ]
                                             },

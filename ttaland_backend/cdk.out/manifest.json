@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fc43024eef73a73fe7aa17f8ca2def43dd38d5ad80a8616657c9110a30a50b76.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2eb36f3e57a29bb7f04dddc8621cb98bc830a20a99d5259642db02dfc38e0afd.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -74,16 +74,10 @@
             "data": "LambdaDynamoDBRoleDefaultPolicy161A9135"
           }
         ],
-        "/BackendCdkStack/UserLambda/Resource": [
+        "/BackendCdkStack/BackendLambda/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "UserLambdaAD4FB23B"
-          }
-        ],
-        "/BackendCdkStack/ProductLambda/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "ProductLambda4F8330F3"
+            "data": "BackendLambdaD93C7B96"
           }
         ],
         "/BackendCdkStack/BackendAPI/Resource": [
@@ -95,7 +89,7 @@
         "/BackendCdkStack/BackendAPI/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BackendAPIDeployment55E9271A96f0d772d314dd82653d51832395c4cb"
+            "data": "BackendAPIDeployment55E9271Af5cf3b5cb261506e542a91497d8bd314"
           }
         ],
         "/BackendCdkStack/BackendAPI/DeploymentStage.prod/Resource": [
