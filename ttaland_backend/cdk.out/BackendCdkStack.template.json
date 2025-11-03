@@ -18,8 +18,8 @@
     ],
     "TableName": "Users_table"
    },
-   "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete",
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
    "Metadata": {
     "aws:cdk:path": "BackendCdkStack/UsersTable/Resource"
    }
@@ -42,8 +42,8 @@
     ],
     "TableName": "Products_table"
    },
-   "UpdateReplacePolicy": "Delete",
-   "DeletionPolicy": "Delete",
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
    "Metadata": {
     "aws:cdk:path": "BackendCdkStack/ProductsTable/Resource"
    }
@@ -135,16 +135,26 @@
     "aws:cdk:path": "BackendCdkStack/LambdaDynamoDBRole/DefaultPolicy/Resource"
    }
   },
-  "UserLambdaAD4FB23B": {
+  "BackendLambdaD93C7B96": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "2c380588b33a95b06cd543666619a1c038a8ab4fb79689519aeba7db68c6e95c.zip"
+     "S3Key": "3fd37dd79a6954c27f709cdc154870133b397844187a57911357607e9fde4de4.zip"
     },
-    "Handler": "user_handler.lambda_handler",
+    "Environment": {
+     "Variables": {
+      "USERS_TABLE": {
+       "Ref": "UsersTable9725E9C8"
+      },
+      "PRODUCTS_TABLE": {
+       "Ref": "ProductsTable241ADBFF"
+      }
+     }
+    },
+    "Handler": "handler.handler",
     "Role": {
      "Fn::GetAtt": [
       "LambdaDynamoDBRole8A842A29",
@@ -159,38 +169,8 @@
     "LambdaDynamoDBRole8A842A29"
    ],
    "Metadata": {
-    "aws:cdk:path": "BackendCdkStack/UserLambda/Resource",
-    "aws:asset:path": "asset.2c380588b33a95b06cd543666619a1c038a8ab4fb79689519aeba7db68c6e95c",
-    "aws:asset:is-bundled": false,
-    "aws:asset:property": "Code"
-   }
-  },
-  "ProductLambda4F8330F3": {
-   "Type": "AWS::Lambda::Function",
-   "Properties": {
-    "Code": {
-     "S3Bucket": {
-      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
-     },
-     "S3Key": "2c380588b33a95b06cd543666619a1c038a8ab4fb79689519aeba7db68c6e95c.zip"
-    },
-    "Handler": "product_handler.lambda_handler",
-    "Role": {
-     "Fn::GetAtt": [
-      "LambdaDynamoDBRole8A842A29",
-      "Arn"
-     ]
-    },
-    "Runtime": "python3.9",
-    "Timeout": 30
-   },
-   "DependsOn": [
-    "LambdaDynamoDBRoleDefaultPolicy161A9135",
-    "LambdaDynamoDBRole8A842A29"
-   ],
-   "Metadata": {
-    "aws:cdk:path": "BackendCdkStack/ProductLambda/Resource",
-    "aws:asset:path": "asset.2c380588b33a95b06cd543666619a1c038a8ab4fb79689519aeba7db68c6e95c",
+    "aws:cdk:path": "BackendCdkStack/BackendLambda/Resource",
+    "aws:asset:path": "asset.3fd37dd79a6954c27f709cdc154870133b397844187a57911357607e9fde4de4",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -205,7 +185,7 @@
     "aws:cdk:path": "BackendCdkStack/BackendAPI/Resource"
    }
   },
-  "BackendAPIDeployment55E9271A5ffd6390db395c379d74a6ab6fe19421": {
+  "BackendAPIDeployment55E9271Af5cf3b5cb261506e542a91497d8bd314": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "API for Users and Products",
@@ -214,18 +194,23 @@
     }
    },
    "DependsOn": [
+    "BackendAPIOPTIONS581B7095",
     "BackendAPIproductsidDELETEBE5C1434",
     "BackendAPIproductsidGET8A47BA60",
+    "BackendAPIproductsidOPTIONS3C1FEC6D",
     "BackendAPIproductsidPUT3339C063",
     "BackendAPIproductsid4E8D51ED",
     "BackendAPIproductsGET46133E10",
+    "BackendAPIproductsOPTIONS1D923263",
     "BackendAPIproductsPOST54CD2423",
     "BackendAPIproducts3BBB2246",
     "BackendAPIusersidDELETE6E4A81FB",
     "BackendAPIusersidGET8D4B7FDD",
+    "BackendAPIusersidOPTIONSEB65B059",
     "BackendAPIusersidPUTA49440E7",
     "BackendAPIusersid92688447",
     "BackendAPIusersGET8748FA6C",
+    "BackendAPIusersOPTIONS4C0B3A5C",
     "BackendAPIusersPOSTF4B1F6D8",
     "BackendAPIusersF420DE50"
    ],
@@ -237,7 +222,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "BackendAPIDeployment55E9271A5ffd6390db395c379d74a6ab6fe19421"
+     "Ref": "BackendAPIDeployment55E9271Af5cf3b5cb261506e542a91497d8bd314"
     },
     "RestApiId": {
      "Ref": "BackendAPI4304626F"
@@ -246,6 +231,54 @@
    },
    "Metadata": {
     "aws:cdk:path": "BackendCdkStack/BackendAPI/DeploymentStage.prod/Resource"
+   }
+  },
+  "BackendAPIOPTIONS581B7095": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "BackendAPI4304626F",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "BackendAPI4304626F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/OPTIONS/Resource"
    }
   },
   "BackendAPIusersF420DE50": {
@@ -266,13 +299,58 @@
     "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/users/Resource"
    }
   },
+  "BackendAPIusersOPTIONS4C0B3A5C": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "BackendAPIusersF420DE50"
+    },
+    "RestApiId": {
+     "Ref": "BackendAPI4304626F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/users/OPTIONS/Resource"
+   }
+  },
   "BackendAPIusersGETApiPermissionBackendCdkStackBackendAPI20ADE104GETusers00D0D13D": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -316,7 +394,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -373,7 +451,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "UserLambdaAD4FB23B",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -399,7 +477,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -443,7 +521,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -500,7 +578,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "UserLambdaAD4FB23B",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -535,13 +613,58 @@
     "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/users/{id}/Resource"
    }
   },
+  "BackendAPIusersidOPTIONSEB65B059": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "BackendAPIusersid92688447"
+    },
+    "RestApiId": {
+     "Ref": "BackendAPI4304626F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/users/{id}/OPTIONS/Resource"
+   }
+  },
   "BackendAPIusersidGETApiPermissionBackendCdkStackBackendAPI20ADE104GETusersidDB62F521": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -585,7 +708,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -642,7 +765,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "UserLambdaAD4FB23B",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -668,7 +791,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -712,7 +835,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -769,7 +892,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "UserLambdaAD4FB23B",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -795,7 +918,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -839,7 +962,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "UserLambdaAD4FB23B",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -896,7 +1019,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "UserLambdaAD4FB23B",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -934,13 +1057,58 @@
     "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/products/Resource"
    }
   },
+  "BackendAPIproductsOPTIONS1D923263": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "BackendAPIproducts3BBB2246"
+    },
+    "RestApiId": {
+     "Ref": "BackendAPI4304626F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/products/OPTIONS/Resource"
+   }
+  },
   "BackendAPIproductsGETApiPermissionBackendCdkStackBackendAPI20ADE104GETproductsD30FE22A": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -984,7 +1152,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1041,7 +1209,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "ProductLambda4F8330F3",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -1067,7 +1235,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1111,7 +1279,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1168,7 +1336,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "ProductLambda4F8330F3",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -1203,13 +1371,58 @@
     "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/products/{id}/Resource"
    }
   },
+  "BackendAPIproductsidOPTIONS3C1FEC6D": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+        "method.response.header.Access-Control-Max-Age": "'86400'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true,
+       "method.response.header.Access-Control-Max-Age": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "BackendAPIproductsid4E8D51ED"
+    },
+    "RestApiId": {
+     "Ref": "BackendAPI4304626F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "BackendCdkStack/BackendAPI/Default/products/{id}/OPTIONS/Resource"
+   }
+  },
   "BackendAPIproductsidGETApiPermissionBackendCdkStackBackendAPI20ADE104GETproductsidDF3B594A": {
    "Type": "AWS::Lambda::Permission",
    "Properties": {
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1253,7 +1466,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1310,7 +1523,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "ProductLambda4F8330F3",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -1336,7 +1549,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1380,7 +1593,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1437,7 +1650,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "ProductLambda4F8330F3",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -1463,7 +1676,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1507,7 +1720,7 @@
     "Action": "lambda:InvokeFunction",
     "FunctionName": {
      "Fn::GetAtt": [
-      "ProductLambda4F8330F3",
+      "BackendLambdaD93C7B96",
       "Arn"
      ]
     },
@@ -1564,7 +1777,7 @@
         ":lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
-          "ProductLambda4F8330F3",
+          "BackendLambdaD93C7B96",
           "Arn"
          ]
         },
@@ -1587,7 +1800,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WPwW6DMBBEvyV340L4goSqtyqI9B4tZkO2gI3YRQhZ/Htlk6rpad6M1+P1UWdpqtMDLJyYpkt6qrW/CphOwcI336wWBtfU2n9B3aMq7jbCpggG7Su3Z1FL15NZg91pUz0MdQPaf8zWCDkbzl65xGkgZnJ2U5zfgBmF9SmI4lyfZ9OhnIFRwUgtCC6wal8hy2mk+O4T33Hs3TqglZC+uKtAGzfcoUJ282Qwdv6aZ9HOnygP14Rop237m4uLhSKybZi4zDLO8u96cbeFsw1J/FO5ysPZt1xnR50dvpkomWYrNKCudv0Bkp5L2oABAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02PwW6DMBBEvyV340L4giRVb1UQ6T1a8JZsARuxixCy+PfKhqqc5u3Marw+6yxNdXqCmZPatElHlfYPgbpVMPPTm8VC70yl/RdUHarbt42wKoJe+9JtXtTCdVQvYdxoVR30lQHtPyZbCzkbsiMXOPbETM6uivMnMKOwvgRRnOvrVLcoV2BUMFADgjMs2pfIchkovrvjOw6dW3q0EtzD9BBo4oUblMhuGmuMnZ8oL2dCuNNfujdHXtd/Ox4Wisg2Yec+yTDJcTvwzVlDEv9ULPJy9i3X2Vlnpx8mSsbJCvWoy01/AXTSaQGAAQAA"
    },
    "Metadata": {
     "aws:cdk:path": "BackendCdkStack/CDKMetadata/Default"

@@ -16,25 +16,24 @@ class BackendStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # Bảng Users
+        # Users
         users_table = dynamodb.Table(
             self, "UsersTable",
             table_name="Users_table",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.DESTROY  # Xóa khi destroy stack (dev only)
+            removal_policy=RemovalPolicy.RETAIN
         )
 
-        # Bảng Products
+        # Products
         products_table = dynamodb.Table(
             self, "ProductsTable",
             table_name="Products_table",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.DESTROY
+            removal_policy=RemovalPolicy.RETAIN
         )
 
-        # IAM Role cho Lambda: Quyền DynamoDB
         lambda_role = iam.Role(
             self, "LambdaDynamoDBRole",
             assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
@@ -45,52 +44,48 @@ class BackendStack(Stack):
         users_table.grant_read_write_data(lambda_role)
         products_table.grant_read_write_data(lambda_role)
 
-        # Lambda cho Users
-        user_lambda = _lambda.Function(
-            self, "UserLambda",
+        backend_lambda = _lambda.Function(
+            self, "BackendLambda",
             runtime=_lambda.Runtime.PYTHON_3_9,
-            handler="user_handler.lambda_handler",
-            code=_lambda.Code.from_asset(os.path.join(os.path.dirname(__file__), "handlers")),
+            handler="handler.handler",
+            code=_lambda.Code.from_asset(os.path.join(os.path.dirname(__file__), "src")),
             role=lambda_role,
-            timeout=Duration.seconds(30)
-        )
+            timeout=Duration.seconds(30),
+            environment={
+                "USERS_TABLE": users_table.table_name,
+                "PRODUCTS_TABLE": products_table.table_name
+            }
+        ) 
 
-        # Lambda cho Products
-        product_lambda = _lambda.Function(
-            self, "ProductLambda",
-            runtime=_lambda.Runtime.PYTHON_3_9,
-            handler="product_handler.lambda_handler",
-            code=_lambda.Code.from_asset(os.path.join(os.path.dirname(__file__), "handlers")),
-            role=lambda_role,
-            timeout=Duration.seconds(30)
-        )
-
-        # API Gateway
         api = apigw.RestApi(
             self, "BackendAPI",
             rest_api_name="Backend API",
-            description="API for Users and Products"
+            description="API for Users and Products",
+            default_cors_preflight_options=apigw.CorsOptions(
+                allow_origins=apigw.Cors.ALL_ORIGINS,
+                allow_methods=apigw.Cors.ALL_METHODS,
+                allow_headers=apigw.Cors.DEFAULT_HEADERS,
+                max_age=Duration.days(1)
+            )
         )
 
-        # Resources và Methods cho Users
         users_resource = api.root.add_resource("users")
-        users_resource.add_method("GET", apigw.LambdaIntegration(user_lambda))
-        users_resource.add_method("POST", apigw.LambdaIntegration(user_lambda))
+        users_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
+        users_resource.add_method("POST", apigw.LambdaIntegration(backend_lambda))
 
         user_id_resource = users_resource.add_resource("{id}")
-        user_id_resource.add_method("GET", apigw.LambdaIntegration(user_lambda))
-        user_id_resource.add_method("PUT", apigw.LambdaIntegration(user_lambda))
-        user_id_resource.add_method("DELETE", apigw.LambdaIntegration(user_lambda))
+        user_id_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
+        user_id_resource.add_method("PUT", apigw.LambdaIntegration(backend_lambda))
+        user_id_resource.add_method("DELETE", apigw.LambdaIntegration(backend_lambda))
 
-        # Resources và Methods cho Products (tương tự)
         products_resource = api.root.add_resource("products")
-        products_resource.add_method("GET", apigw.LambdaIntegration(product_lambda))
-        products_resource.add_method("POST", apigw.LambdaIntegration(product_lambda))
+        products_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
+        products_resource.add_method("POST", apigw.LambdaIntegration(backend_lambda))
 
         product_id_resource = products_resource.add_resource("{id}")
-        product_id_resource.add_method("GET", apigw.LambdaIntegration(product_lambda))
-        product_id_resource.add_method("PUT", apigw.LambdaIntegration(product_lambda))
-        product_id_resource.add_method("DELETE", apigw.LambdaIntegration(product_lambda))
+        product_id_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
+        product_id_resource.add_method("PUT", apigw.LambdaIntegration(backend_lambda))
+        product_id_resource.add_method("DELETE", apigw.LambdaIntegration(backend_lambda))
 
         # Output: API Endpoint
         CfnOutput(
@@ -98,8 +93,3 @@ class BackendStack(Stack):
             value=api.url,
             description="URL of the API Gateway"
         )
-
-
-
-
-
