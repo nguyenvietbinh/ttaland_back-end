@@ -5,7 +5,7 @@ from botocore.exceptions import ClientError
 from lambdas.utils.response import build_response
 
 dynamodb = boto3.resource('dynamodb')
-products_table = dynamodb.Table(os.environ['PRODUCTS_TABLE'])
+products_table = dynamodb.Table(os.environ['TOWNHOUSES_TABLE'])
 
 
 def get_all_products(headers):
@@ -30,6 +30,7 @@ def get_product(product_id, headers):
 
 def create_product(body, headers):
     try:
+        
         if not body.get('id') or not body.get('name') or not body.get('price'):
             return build_response(400, {'error': 'Missing required fields: id, name, price'}, headers)
         

@@ -12,11 +12,15 @@ from constructs import Construct
 import os
 
 class BackendStack(Stack):
-
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        # Users
+
+
+
+        # ----- create tables -----
+
+        # Users table
         users_table = dynamodb.Table(
             self, "UsersTable",
             table_name="Users_table",
@@ -24,15 +28,42 @@ class BackendStack(Stack):
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
             removal_policy=RemovalPolicy.RETAIN
         )
-
-        # Products
-        products_table = dynamodb.Table(
-            self, "ProductsTable",
-            table_name="Products_table",
+        # Townhouses table
+        townhouses_table = dynamodb.Table(
+            self, "TownhousesTable",
+            table_name="Townhouses_table",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
             removal_policy=RemovalPolicy.RETAIN
         )
+        # Villas table
+        villas_table = dynamodb.Table(
+            self, "VillasTable",
+            table_name="Villas_table",
+            partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
+            billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
+            removal_policy=RemovalPolicy.RETAIN
+        )
+        # Land table
+        land_table = dynamodb.Table(
+            self, "LandTable",
+            table_name="Land_table",
+            partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
+            billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
+            removal_policy=RemovalPolicy.RETAIN
+        )
+        # Apartments table
+        apartments_table = dynamodb.Table(
+            self, "ApartmentsTable",
+            table_name="Apartments_table",
+            partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
+            billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
+            removal_policy=RemovalPolicy.RETAIN
+        )
+        
+
+
+        # ----- add lambda role -----
 
         lambda_role = iam.Role(
             self, "LambdaDynamoDBRole",
@@ -42,8 +73,16 @@ class BackendStack(Stack):
             ]
         )
         users_table.grant_read_write_data(lambda_role)
-        products_table.grant_read_write_data(lambda_role)
+        townhouses_table.grant_read_write_data(lambda_role)
+        villas_table.grant_read_write_data(lambda_role)
+        land_table.grant_read_write_data(lambda_role)
+        apartments_table.grant_read_write_data(lambda_role)
 
+
+
+
+        # ----- add lambda function -----
+        
         backend_lambda = _lambda.Function(
             self, "BackendLambda",
             runtime=_lambda.Runtime.PYTHON_3_9,
@@ -53,14 +92,20 @@ class BackendStack(Stack):
             timeout=Duration.seconds(30),
             environment={
                 "USERS_TABLE": users_table.table_name,
-                "PRODUCTS_TABLE": products_table.table_name
+                "TOWNHOUSES_TABLE": townhouses_table.table_name,
+                "VILLAS_TABLE": villas_table.table_name,
+                "LAND_TABLE": land_table.table_name,
+                "APARTMENT_TABLE": apartments_table.table_name
             }
         ) 
+
+
+        # ----- add api gateway -----
 
         api = apigw.RestApi(
             self, "BackendAPI",
             rest_api_name="Backend API",
-            description="API for Users and Products",
+            description="API for TTALand",
             default_cors_preflight_options=apigw.CorsOptions(
                 allow_origins=apigw.Cors.ALL_ORIGINS,
                 allow_methods=apigw.Cors.ALL_METHODS,
@@ -69,23 +114,19 @@ class BackendStack(Stack):
             )
         )
 
-        users_resource = api.root.add_resource("users")
-        users_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
-        users_resource.add_method("POST", apigw.LambdaIntegration(backend_lambda))
 
-        user_id_resource = users_resource.add_resource("{id}")
-        user_id_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
-        user_id_resource.add_method("PUT", apigw.LambdaIntegration(backend_lambda))
-        user_id_resource.add_method("DELETE", apigw.LambdaIntegration(backend_lambda))
+        
+        # ----- add endpoint -----
 
-        products_resource = api.root.add_resource("products")
-        products_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
-        products_resource.add_method("POST", apigw.LambdaIntegration(backend_lambda))
 
-        product_id_resource = products_resource.add_resource("{id}")
-        product_id_resource.add_method("GET", apigw.LambdaIntegration(backend_lambda))
-        product_id_resource.add_method("PUT", apigw.LambdaIntegration(backend_lambda))
-        product_id_resource.add_method("DELETE", apigw.LambdaIntegration(backend_lambda))
+        api.root.add_proxy(
+            default_integration=apigw.LambdaIntegration(backend_lambda),
+            any_method=True 
+        )
+
+
+
+
 
         # Output: API Endpoint
         CfnOutput(
