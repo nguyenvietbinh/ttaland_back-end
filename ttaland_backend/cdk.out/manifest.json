@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2869fe3c437b08bfef9bbb411e37095d2dc031ad568d3dc604163f80cbdc586b.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/7c69c97c12eb1e344a8e942154382c44698e787316e4a7285c42486c68c41500.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -102,6 +102,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ApartmentsTable5D49A705"
+          }
+        ],
+        "/BackendCdkStack/BackendImagesBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendImagesBucket32566307"
           }
         ],
         "/BackendCdkStack/LambdaDynamoDBRole/Resource": [

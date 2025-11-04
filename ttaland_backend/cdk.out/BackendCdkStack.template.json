@@ -120,6 +120,23 @@
     "aws:cdk:path": "BackendCdkStack/ApartmentsTable/Resource"
    }
   },
+  "BackendImagesBucket32566307": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketName": "ttaland-backend-images",
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "BackendCdkStack/BackendImagesBucket/Resource"
+   }
+  },
   "LambdaDynamoDBRole8A842A29": {
    "Type": "AWS::IAM::Role",
    "Properties": {
@@ -210,6 +227,43 @@
          "Ref": "AWS::NoValue"
         }
        ]
+      },
+      {
+       "Action": [
+        "s3:Abort*",
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "BackendImagesBucket32566307",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "BackendImagesBucket32566307",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
       }
      ],
      "Version": "2012-10-17"
@@ -232,7 +286,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "b458b2e965b52ad3b7fe077ecb99bc5c973f762e9da782e5e543626020251142.zip"
+     "S3Key": "4fda9adb0ae3fe786d32b339ad58e791d93e576d1cab168574ac142d4916ae3f.zip"
     },
     "Environment": {
      "Variables": {
@@ -250,6 +304,9 @@
       },
       "APARTMENT_TABLE": {
        "Ref": "ApartmentsTable5D49A705"
+      },
+      "IMAGES_BUCKET": {
+       "Ref": "BackendImagesBucket32566307"
       }
      }
     },
@@ -269,7 +326,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "BackendCdkStack/BackendLambda/Resource",
-    "aws:asset:path": "asset.b458b2e965b52ad3b7fe077ecb99bc5c973f762e9da782e5e543626020251142",
+    "aws:asset:path": "asset.4fda9adb0ae3fe786d32b339ad58e791d93e576d1cab168574ac142d4916ae3f",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -581,7 +638,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02P0W6DMAxFv6XvIYPyBW2nvU1DdO+VCR71gARhI4Yi/n1KYBNP99i+uXbOOktTnZ5g5sTUbdJRpf1dwLQKZn74erHQu7rS/hOqDtXty0ZYFUGvfem2XtTCdWSWUG60qg76qgbt3yZrhJwNsyMXOPbETM6uivMHMKOwvgRRnOvrZFqUKzAqGKgBwRkW7UtkuQwU9+74ikPnlh6thO6hugs08cINSmQ3jQZj5jvK09VhuFMxup/lz7LHR17X/5cqXhfSyDbB8zHJMMnRHfjmbE0SP1Ys8nT2JdfZWWenbyZKxskK9ajLTX8Bp0TO+YUBAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02P0W6DMAxFv6XvaQbtF7Sd9jYN0b1XJvGoB0kQMWJRxL9PCWzi6R7H1/bNSZZFIYsDzP6odHfsqZHxzqA6AbN/RB0sGKcbGT+h6VHcvmyGRfizjNdJdcjpcaNVruBxEQRGxtqtQ1kr15MKqVxpET2YRoOMb5NVTM6m3p4rHA15T86mgw/wHtnLSxIBA7XAOEOQsUbPl4HypQ1fcehdMGhzvl11Z2hzphVq9G4aFabQ4h356XRqblSN7if8Wbb1mZflf1LkPGkb2TZ5PiYeJt67E9+c1cT5K1Xgp7MvZ1meZHn49kTHcbJMBmW96i/AW2WomAEAAA=="
    },
    "Metadata": {
     "aws:cdk:path": "BackendCdkStack/CDKMetadata/Default"

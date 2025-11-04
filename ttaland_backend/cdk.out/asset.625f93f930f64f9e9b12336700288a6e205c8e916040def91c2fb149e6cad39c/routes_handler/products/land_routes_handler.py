@@ -7,7 +7,6 @@ def land_routes_handler(http_method, path, body, cors_headers):
       if path == '/products/land':
         return get_all_products(cors_headers)
       else:
-        product_id = path.split('/')[-1]
         return get_product(product_id, cors_headers) 
     elif http_method == 'POST':
         return create_product(body, cors_headers)

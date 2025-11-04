@@ -4,6 +4,7 @@ from aws_cdk import (
     aws_lambda as _lambda,
     aws_apigateway as apigw,
     aws_iam as iam,
+    aws_s3 as s3,
     Duration,
     CfnOutput,
     RemovalPolicy,
@@ -60,6 +61,18 @@ class BackendStack(Stack):
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
             removal_policy=RemovalPolicy.RETAIN
         )
+
+
+        # ----- create S3 bucket -----
+        
+        bucket = s3.Bucket(
+            self, "BackendImagesBucket",
+            bucket_name="ttaland-backend-images",
+            versioned=False,
+            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            removal_policy=RemovalPolicy.RETAIN,
+            auto_delete_objects=False
+        )
         
 
 
@@ -77,6 +90,7 @@ class BackendStack(Stack):
         villas_table.grant_read_write_data(lambda_role)
         land_table.grant_read_write_data(lambda_role)
         apartments_table.grant_read_write_data(lambda_role)
+        bucket.grant_read_write(lambda_role)
 
 
 
@@ -95,7 +109,8 @@ class BackendStack(Stack):
                 "TOWNHOUSES_TABLE": townhouses_table.table_name,
                 "VILLAS_TABLE": villas_table.table_name,
                 "LAND_TABLE": land_table.table_name,
-                "APARTMENT_TABLE": apartments_table.table_name
+                "APARTMENT_TABLE": apartments_table.table_name,
+                "IMAGES_BUCKET": bucket.bucket_name
             }
         ) 
 

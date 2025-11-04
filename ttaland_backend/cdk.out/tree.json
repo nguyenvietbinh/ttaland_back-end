@@ -233,6 +233,36 @@
               "version": "2.100.0"
             }
           },
+          "BackendImagesBucket": {
+            "id": "BackendImagesBucket",
+            "path": "BackendCdkStack/BackendImagesBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendCdkStack/BackendImagesBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketName": "ttaland-backend-images",
+                    "publicAccessBlockConfiguration": {
+                      "blockPublicAcls": true,
+                      "blockPublicPolicy": true,
+                      "ignorePublicAcls": true,
+                      "restrictPublicBuckets": true
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.100.0"
+            }
+          },
           "LambdaDynamoDBRole": {
             "id": "LambdaDynamoDBRole",
             "path": "BackendCdkStack/LambdaDynamoDBRole",
@@ -347,6 +377,43 @@
                                   "Ref": "AWS::NoValue"
                                 }
                               ]
+                            },
+                            {
+                              "Action": [
+                                "s3:Abort*",
+                                "s3:DeleteObject*",
+                                "s3:GetBucket*",
+                                "s3:GetObject*",
+                                "s3:List*",
+                                "s3:PutObject",
+                                "s3:PutObjectLegalHold",
+                                "s3:PutObjectRetention",
+                                "s3:PutObjectTagging",
+                                "s3:PutObjectVersionTagging"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "BackendImagesBucket32566307",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::GetAtt": [
+                                          "BackendImagesBucket32566307",
+                                          "Arn"
+                                        ]
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
                             }
                           ],
                           "Version": "2012-10-17"
@@ -416,7 +483,7 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "b458b2e965b52ad3b7fe077ecb99bc5c973f762e9da782e5e543626020251142.zip"
+                      "s3Key": "4fda9adb0ae3fe786d32b339ad58e791d93e576d1cab168574ac142d4916ae3f.zip"
                     },
                     "environment": {
                       "variables": {
@@ -434,6 +501,9 @@
                         },
                         "APARTMENT_TABLE": {
                           "Ref": "ApartmentsTable5D49A705"
+                        },
+                        "IMAGES_BUCKET": {
+                          "Ref": "BackendImagesBucket32566307"
                         }
                       }
                     },

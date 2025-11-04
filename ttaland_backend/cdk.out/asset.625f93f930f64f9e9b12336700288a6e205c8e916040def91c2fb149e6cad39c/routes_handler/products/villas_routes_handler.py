@@ -1,10 +1,10 @@
-from lambdas.products_lambdas.land_lambda import get_product, get_all_products, create_product, update_product, delete_product
+from lambdas.products_lambdas.villas_lambda import get_product, get_all_products, create_product, update_product, delete_product
 from lambdas.utils.response import build_response
 
 
-def land_routes_handler(http_method, path, body, cors_headers):
+def villas_routes_handler(http_method, path, body, cors_headers):
     if http_method == 'GET':
-      if path == '/products/land':
+      if path == '/products/villas':
         return get_all_products(cors_headers)
       else:
         product_id = path.split('/')[-1]
