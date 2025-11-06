@@ -4,17 +4,17 @@
     "id": "App",
     "path": "",
     "children": {
-      "BackendCdkStack": {
-        "id": "BackendCdkStack",
-        "path": "BackendCdkStack",
+      "BackendStack-Dev": {
+        "id": "BackendStack-Dev",
+        "path": "BackendStack-Dev",
         "children": {
           "UsersTable": {
             "id": "UsersTable",
-            "path": "BackendCdkStack/UsersTable",
+            "path": "BackendStack-Dev/UsersTable",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/UsersTable/Resource",
+                "path": "BackendStack-Dev/UsersTable/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -31,7 +31,7 @@
                         "keyType": "HASH"
                       }
                     ],
-                    "tableName": "Users_table"
+                    "tableName": "Users_table-dev"
                   }
                 },
                 "constructInfo": {
@@ -41,7 +41,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "BackendCdkStack/UsersTable/ScalingRole",
+                "path": "BackendStack-Dev/UsersTable/ScalingRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.100.0"
@@ -55,11 +55,11 @@
           },
           "TownhousesTable": {
             "id": "TownhousesTable",
-            "path": "BackendCdkStack/TownhousesTable",
+            "path": "BackendStack-Dev/TownhousesTable",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/TownhousesTable/Resource",
+                "path": "BackendStack-Dev/TownhousesTable/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -76,7 +76,7 @@
                         "keyType": "HASH"
                       }
                     ],
-                    "tableName": "Townhouses_table"
+                    "tableName": "Townhouses_table-dev"
                   }
                 },
                 "constructInfo": {
@@ -86,7 +86,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "BackendCdkStack/TownhousesTable/ScalingRole",
+                "path": "BackendStack-Dev/TownhousesTable/ScalingRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.100.0"
@@ -100,11 +100,11 @@
           },
           "VillasTable": {
             "id": "VillasTable",
-            "path": "BackendCdkStack/VillasTable",
+            "path": "BackendStack-Dev/VillasTable",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/VillasTable/Resource",
+                "path": "BackendStack-Dev/VillasTable/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -121,7 +121,7 @@
                         "keyType": "HASH"
                       }
                     ],
-                    "tableName": "Villas_table"
+                    "tableName": "Villas_table-dev"
                   }
                 },
                 "constructInfo": {
@@ -131,7 +131,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "BackendCdkStack/VillasTable/ScalingRole",
+                "path": "BackendStack-Dev/VillasTable/ScalingRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.100.0"
@@ -145,11 +145,11 @@
           },
           "LandTable": {
             "id": "LandTable",
-            "path": "BackendCdkStack/LandTable",
+            "path": "BackendStack-Dev/LandTable",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/LandTable/Resource",
+                "path": "BackendStack-Dev/LandTable/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -166,7 +166,7 @@
                         "keyType": "HASH"
                       }
                     ],
-                    "tableName": "Land_table"
+                    "tableName": "Land_table-dev"
                   }
                 },
                 "constructInfo": {
@@ -176,7 +176,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "BackendCdkStack/LandTable/ScalingRole",
+                "path": "BackendStack-Dev/LandTable/ScalingRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.100.0"
@@ -190,11 +190,11 @@
           },
           "ApartmentsTable": {
             "id": "ApartmentsTable",
-            "path": "BackendCdkStack/ApartmentsTable",
+            "path": "BackendStack-Dev/ApartmentsTable",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/ApartmentsTable/Resource",
+                "path": "BackendStack-Dev/ApartmentsTable/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -211,7 +211,7 @@
                         "keyType": "HASH"
                       }
                     ],
-                    "tableName": "Apartments_table"
+                    "tableName": "Apartments_table-dev"
                   }
                 },
                 "constructInfo": {
@@ -221,7 +221,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "BackendCdkStack/ApartmentsTable/ScalingRole",
+                "path": "BackendStack-Dev/ApartmentsTable/ScalingRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.100.0"
@@ -235,15 +235,15 @@
           },
           "BackendImagesBucket": {
             "id": "BackendImagesBucket",
-            "path": "BackendCdkStack/BackendImagesBucket",
+            "path": "BackendStack-Dev/BackendImagesBucket",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/BackendImagesBucket/Resource",
+                "path": "BackendStack-Dev/BackendImagesBucket/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
                   "aws:cdk:cloudformation:props": {
-                    "bucketName": "ttaland-backend-images",
+                    "bucketName": "ttaland-backend-images-dev",
                     "publicAccessBlockConfiguration": {
                       "blockPublicAcls": true,
                       "blockPublicPolicy": true,
@@ -265,11 +265,11 @@
           },
           "LambdaDynamoDBRole": {
             "id": "LambdaDynamoDBRole",
-            "path": "BackendCdkStack/LambdaDynamoDBRole",
+            "path": "BackendStack-Dev/LambdaDynamoDBRole",
             "children": {
               "ImportLambdaDynamoDBRole": {
                 "id": "ImportLambdaDynamoDBRole",
-                "path": "BackendCdkStack/LambdaDynamoDBRole/ImportLambdaDynamoDBRole",
+                "path": "BackendStack-Dev/LambdaDynamoDBRole/ImportLambdaDynamoDBRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.100.0"
@@ -277,7 +277,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/LambdaDynamoDBRole/Resource",
+                "path": "BackendStack-Dev/LambdaDynamoDBRole/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                   "aws:cdk:cloudformation:props": {
@@ -316,11 +316,11 @@
               },
               "DefaultPolicy": {
                 "id": "DefaultPolicy",
-                "path": "BackendCdkStack/LambdaDynamoDBRole/DefaultPolicy",
+                "path": "BackendStack-Dev/LambdaDynamoDBRole/DefaultPolicy",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "BackendCdkStack/LambdaDynamoDBRole/DefaultPolicy/Resource",
+                    "path": "BackendStack-Dev/LambdaDynamoDBRole/DefaultPolicy/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                       "aws:cdk:cloudformation:props": {
@@ -445,15 +445,15 @@
           },
           "BackendLambda": {
             "id": "BackendLambda",
-            "path": "BackendCdkStack/BackendLambda",
+            "path": "BackendStack-Dev/BackendLambda",
             "children": {
               "Code": {
                 "id": "Code",
-                "path": "BackendCdkStack/BackendLambda/Code",
+                "path": "BackendStack-Dev/BackendLambda/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "BackendCdkStack/BackendLambda/Code/Stage",
+                    "path": "BackendStack-Dev/BackendLambda/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.100.0"
@@ -461,7 +461,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "BackendCdkStack/BackendLambda/Code/AssetBucket",
+                    "path": "BackendStack-Dev/BackendLambda/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.100.0"
@@ -475,7 +475,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/BackendLambda/Resource",
+                "path": "BackendStack-Dev/BackendLambda/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -531,16 +531,16 @@
           },
           "BackendAPI": {
             "id": "BackendAPI",
-            "path": "BackendCdkStack/BackendAPI",
+            "path": "BackendStack-Dev/BackendAPI",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "BackendCdkStack/BackendAPI/Resource",
+                "path": "BackendStack-Dev/BackendAPI/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::ApiGateway::RestApi",
                   "aws:cdk:cloudformation:props": {
-                    "description": "API for TTALand",
-                    "name": "Backend API"
+                    "description": "API for dev TTALand",
+                    "name": "Backend-API-dev"
                   }
                 },
                 "constructInfo": {
@@ -550,15 +550,15 @@
               },
               "Deployment": {
                 "id": "Deployment",
-                "path": "BackendCdkStack/BackendAPI/Deployment",
+                "path": "BackendStack-Dev/BackendAPI/Deployment",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "BackendCdkStack/BackendAPI/Deployment/Resource",
+                    "path": "BackendStack-Dev/BackendAPI/Deployment/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Deployment",
                       "aws:cdk:cloudformation:props": {
-                        "description": "API for TTALand",
+                        "description": "API for dev TTALand",
                         "restApiId": {
                           "Ref": "BackendAPI4304626F"
                         }
@@ -575,23 +575,23 @@
                   "version": "2.100.0"
                 }
               },
-              "DeploymentStage.prod": {
-                "id": "DeploymentStage.prod",
-                "path": "BackendCdkStack/BackendAPI/DeploymentStage.prod",
+              "DeploymentStage.dev": {
+                "id": "DeploymentStage.dev",
+                "path": "BackendStack-Dev/BackendAPI/DeploymentStage.dev",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "BackendCdkStack/BackendAPI/DeploymentStage.prod/Resource",
+                    "path": "BackendStack-Dev/BackendAPI/DeploymentStage.dev/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
                       "aws:cdk:cloudformation:props": {
                         "deploymentId": {
-                          "Ref": "BackendAPIDeployment55E9271A209ae8c27c7c5940f65a7ad190096e0f"
+                          "Ref": "BackendAPIDeployment55E9271A66003940e26c43bfc6cc1e274b8f7714"
                         },
                         "restApiId": {
                           "Ref": "BackendAPI4304626F"
                         },
-                        "stageName": "prod"
+                        "stageName": "dev"
                       }
                     },
                     "constructInfo": {
@@ -607,7 +607,7 @@
               },
               "Endpoint": {
                 "id": "Endpoint",
-                "path": "BackendCdkStack/BackendAPI/Endpoint",
+                "path": "BackendStack-Dev/BackendAPI/Endpoint",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnOutput",
                   "version": "2.100.0"
@@ -615,15 +615,15 @@
               },
               "Default": {
                 "id": "Default",
-                "path": "BackendCdkStack/BackendAPI/Default",
+                "path": "BackendStack-Dev/BackendAPI/Default",
                 "children": {
                   "OPTIONS": {
                     "id": "OPTIONS",
-                    "path": "BackendCdkStack/BackendAPI/Default/OPTIONS",
+                    "path": "BackendStack-Dev/BackendAPI/Default/OPTIONS",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "BackendCdkStack/BackendAPI/Default/OPTIONS/Resource",
+                        "path": "BackendStack-Dev/BackendAPI/Default/OPTIONS/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                           "aws:cdk:cloudformation:props": {
@@ -682,11 +682,11 @@
                   },
                   "{proxy+}": {
                     "id": "{proxy+}",
-                    "path": "BackendCdkStack/BackendAPI/Default/{proxy+}",
+                    "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "BackendCdkStack/BackendAPI/Default/{proxy+}/Resource",
+                        "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
                           "aws:cdk:cloudformation:props": {
@@ -709,11 +709,11 @@
                       },
                       "OPTIONS": {
                         "id": "OPTIONS",
-                        "path": "BackendCdkStack/BackendAPI/Default/{proxy+}/OPTIONS",
+                        "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}/OPTIONS",
                         "children": {
                           "Resource": {
                             "id": "Resource",
-                            "path": "BackendCdkStack/BackendAPI/Default/{proxy+}/OPTIONS/Resource",
+                            "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}/OPTIONS/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                               "aws:cdk:cloudformation:props": {
@@ -769,11 +769,11 @@
                       },
                       "ANY": {
                         "id": "ANY",
-                        "path": "BackendCdkStack/BackendAPI/Default/{proxy+}/ANY",
+                        "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}/ANY",
                         "children": {
-                          "ApiPermission.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}": {
-                            "id": "ApiPermission.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}",
-                            "path": "BackendCdkStack/BackendAPI/Default/{proxy+}/ANY/ApiPermission.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}",
+                          "ApiPermission.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}": {
+                            "id": "ApiPermission.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}",
+                            "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}/ANY/ApiPermission.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                               "aws:cdk:cloudformation:props": {
@@ -807,7 +807,7 @@
                                       },
                                       "/",
                                       {
-                                        "Ref": "BackendAPIDeploymentStageprod69A6990B"
+                                        "Ref": "BackendAPIDeploymentStagedev4FD2E4EB"
                                       },
                                       "/*/*"
                                     ]
@@ -820,9 +820,9 @@
                               "version": "2.100.0"
                             }
                           },
-                          "ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}": {
-                            "id": "ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}",
-                            "path": "BackendCdkStack/BackendAPI/Default/{proxy+}/ANY/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}",
+                          "ApiPermission.Test.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}": {
+                            "id": "ApiPermission.Test.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}",
+                            "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}/ANY/ApiPermission.Test.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                               "aws:cdk:cloudformation:props": {
@@ -867,7 +867,7 @@
                           },
                           "Resource": {
                             "id": "Resource",
-                            "path": "BackendCdkStack/BackendAPI/Default/{proxy+}/ANY/Resource",
+                            "path": "BackendStack-Dev/BackendAPI/Default/{proxy+}/ANY/Resource",
                             "attributes": {
                               "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                               "aws:cdk:cloudformation:props": {
@@ -927,11 +927,11 @@
                   },
                   "ANY": {
                     "id": "ANY",
-                    "path": "BackendCdkStack/BackendAPI/Default/ANY",
+                    "path": "BackendStack-Dev/BackendAPI/Default/ANY",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "BackendCdkStack/BackendAPI/Default/ANY/Resource",
+                        "path": "BackendStack-Dev/BackendAPI/Default/ANY/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
                           "aws:cdk:cloudformation:props": {
@@ -976,7 +976,7 @@
           },
           "ApiEndpoint": {
             "id": "ApiEndpoint",
-            "path": "BackendCdkStack/ApiEndpoint",
+            "path": "BackendStack-Dev/ApiEndpoint",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.100.0"
@@ -984,11 +984,11 @@
           },
           "CDKMetadata": {
             "id": "CDKMetadata",
-            "path": "BackendCdkStack/CDKMetadata",
+            "path": "BackendStack-Dev/CDKMetadata",
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "BackendCdkStack/CDKMetadata/Default",
+                "path": "BackendStack-Dev/CDKMetadata/Default",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.100.0"
@@ -996,7 +996,7 @@
               },
               "Condition": {
                 "id": "Condition",
-                "path": "BackendCdkStack/CDKMetadata/Condition",
+                "path": "BackendStack-Dev/CDKMetadata/Condition",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.CfnCondition",
                   "version": "2.100.0"
@@ -1010,7 +1010,7 @@
           },
           "BootstrapVersion": {
             "id": "BootstrapVersion",
-            "path": "BackendCdkStack/BootstrapVersion",
+            "path": "BackendStack-Dev/BootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnParameter",
               "version": "2.100.0"
@@ -1018,7 +1018,1033 @@
           },
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
-            "path": "BackendCdkStack/CheckBootstrapVersion",
+            "path": "BackendStack-Dev/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.100.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.100.0"
+        }
+      },
+      "BackendStack-Prod": {
+        "id": "BackendStack-Prod",
+        "path": "BackendStack-Prod",
+        "children": {
+          "UsersTable": {
+            "id": "UsersTable",
+            "path": "BackendStack-Prod/UsersTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/UsersTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "tableName": "Users_table-prod"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.100.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "BackendStack-Prod/UsersTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.100.0"
+            }
+          },
+          "TownhousesTable": {
+            "id": "TownhousesTable",
+            "path": "BackendStack-Prod/TownhousesTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/TownhousesTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "tableName": "Townhouses_table-prod"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.100.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "BackendStack-Prod/TownhousesTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.100.0"
+            }
+          },
+          "VillasTable": {
+            "id": "VillasTable",
+            "path": "BackendStack-Prod/VillasTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/VillasTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "tableName": "Villas_table-prod"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.100.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "BackendStack-Prod/VillasTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.100.0"
+            }
+          },
+          "LandTable": {
+            "id": "LandTable",
+            "path": "BackendStack-Prod/LandTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/LandTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "tableName": "Land_table-prod"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.100.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "BackendStack-Prod/LandTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.100.0"
+            }
+          },
+          "ApartmentsTable": {
+            "id": "ApartmentsTable",
+            "path": "BackendStack-Prod/ApartmentsTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/ApartmentsTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "tableName": "Apartments_table-prod"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.100.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "BackendStack-Prod/ApartmentsTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.100.0"
+            }
+          },
+          "BackendImagesBucket": {
+            "id": "BackendImagesBucket",
+            "path": "BackendStack-Prod/BackendImagesBucket",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/BackendImagesBucket/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketName": "ttaland-backend-images-prod",
+                    "publicAccessBlockConfiguration": {
+                      "blockPublicAcls": true,
+                      "blockPublicPolicy": true,
+                      "ignorePublicAcls": true,
+                      "restrictPublicBuckets": true
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.100.0"
+            }
+          },
+          "LambdaDynamoDBRole": {
+            "id": "LambdaDynamoDBRole",
+            "path": "BackendStack-Prod/LambdaDynamoDBRole",
+            "children": {
+              "ImportLambdaDynamoDBRole": {
+                "id": "ImportLambdaDynamoDBRole",
+                "path": "BackendStack-Prod/LambdaDynamoDBRole/ImportLambdaDynamoDBRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/LambdaDynamoDBRole/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": "lambda.amazonaws.com"
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    },
+                    "managedPolicyArns": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.100.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "BackendStack-Prod/LambdaDynamoDBRole/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BackendStack-Prod/LambdaDynamoDBRole/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "dynamodb:BatchGetItem",
+                                "dynamodb:BatchWriteItem",
+                                "dynamodb:ConditionCheckItem",
+                                "dynamodb:DeleteItem",
+                                "dynamodb:DescribeTable",
+                                "dynamodb:GetItem",
+                                "dynamodb:GetRecords",
+                                "dynamodb:GetShardIterator",
+                                "dynamodb:PutItem",
+                                "dynamodb:Query",
+                                "dynamodb:Scan",
+                                "dynamodb:UpdateItem"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "ApartmentsTable5D49A705",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::GetAtt": [
+                                    "LandTable60E33505",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::GetAtt": [
+                                    "TownhousesTable359D7464",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::GetAtt": [
+                                    "UsersTable9725E9C8",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::GetAtt": [
+                                    "VillasTable40F3B906",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Ref": "AWS::NoValue"
+                                }
+                              ]
+                            },
+                            {
+                              "Action": [
+                                "s3:Abort*",
+                                "s3:DeleteObject*",
+                                "s3:GetBucket*",
+                                "s3:GetObject*",
+                                "s3:List*",
+                                "s3:PutObject",
+                                "s3:PutObjectLegalHold",
+                                "s3:PutObjectRetention",
+                                "s3:PutObjectTagging",
+                                "s3:PutObjectVersionTagging"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "BackendImagesBucket32566307",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::GetAtt": [
+                                          "BackendImagesBucket32566307",
+                                          "Arn"
+                                        ]
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "LambdaDynamoDBRoleDefaultPolicy161A9135",
+                        "roles": [
+                          {
+                            "Ref": "LambdaDynamoDBRole8A842A29"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.100.0"
+            }
+          },
+          "BackendLambda": {
+            "id": "BackendLambda",
+            "path": "BackendStack-Prod/BackendLambda",
+            "children": {
+              "Code": {
+                "id": "Code",
+                "path": "BackendStack-Prod/BackendLambda/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "BackendStack-Prod/BackendLambda/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "BackendStack-Prod/BackendLambda/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.100.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/BackendLambda/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "4fda9adb0ae3fe786d32b339ad58e791d93e576d1cab168574ac142d4916ae3f.zip"
+                    },
+                    "environment": {
+                      "variables": {
+                        "USERS_TABLE": {
+                          "Ref": "UsersTable9725E9C8"
+                        },
+                        "TOWNHOUSES_TABLE": {
+                          "Ref": "TownhousesTable359D7464"
+                        },
+                        "VILLAS_TABLE": {
+                          "Ref": "VillasTable40F3B906"
+                        },
+                        "LAND_TABLE": {
+                          "Ref": "LandTable60E33505"
+                        },
+                        "APARTMENT_TABLE": {
+                          "Ref": "ApartmentsTable5D49A705"
+                        },
+                        "IMAGES_BUCKET": {
+                          "Ref": "BackendImagesBucket32566307"
+                        }
+                      }
+                    },
+                    "handler": "handler.handler",
+                    "role": {
+                      "Fn::GetAtt": [
+                        "LambdaDynamoDBRole8A842A29",
+                        "Arn"
+                      ]
+                    },
+                    "runtime": "python3.9",
+                    "timeout": 30
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.100.0"
+            }
+          },
+          "BackendAPI": {
+            "id": "BackendAPI",
+            "path": "BackendStack-Prod/BackendAPI",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/BackendAPI/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ApiGateway::RestApi",
+                  "aws:cdk:cloudformation:props": {
+                    "description": "API for prod TTALand",
+                    "name": "Backend-API-prod"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.CfnRestApi",
+                  "version": "2.100.0"
+                }
+              },
+              "Deployment": {
+                "id": "Deployment",
+                "path": "BackendStack-Prod/BackendAPI/Deployment",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BackendStack-Prod/BackendAPI/Deployment/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Deployment",
+                      "aws:cdk:cloudformation:props": {
+                        "description": "API for prod TTALand",
+                        "restApiId": {
+                          "Ref": "BackendAPI4304626F"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.CfnDeployment",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.Deployment",
+                  "version": "2.100.0"
+                }
+              },
+              "DeploymentStage.prod": {
+                "id": "DeploymentStage.prod",
+                "path": "BackendStack-Prod/BackendAPI/DeploymentStage.prod",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "BackendStack-Prod/BackendAPI/DeploymentStage.prod/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::ApiGateway::Stage",
+                      "aws:cdk:cloudformation:props": {
+                        "deploymentId": {
+                          "Ref": "BackendAPIDeployment55E9271A53449e33726dc923c7931452de5c6fdb"
+                        },
+                        "restApiId": {
+                          "Ref": "BackendAPI4304626F"
+                        },
+                        "stageName": "prod"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.CfnStage",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.Stage",
+                  "version": "2.100.0"
+                }
+              },
+              "Endpoint": {
+                "id": "Endpoint",
+                "path": "BackendStack-Prod/BackendAPI/Endpoint",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.100.0"
+                }
+              },
+              "Default": {
+                "id": "Default",
+                "path": "BackendStack-Prod/BackendAPI/Default",
+                "children": {
+                  "OPTIONS": {
+                    "id": "OPTIONS",
+                    "path": "BackendStack-Prod/BackendAPI/Default/OPTIONS",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "BackendStack-Prod/BackendAPI/Default/OPTIONS/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                          "aws:cdk:cloudformation:props": {
+                            "apiKeyRequired": false,
+                            "authorizationType": "NONE",
+                            "httpMethod": "OPTIONS",
+                            "integration": {
+                              "type": "MOCK",
+                              "requestTemplates": {
+                                "application/json": "{ statusCode: 200 }"
+                              },
+                              "integrationResponses": [
+                                {
+                                  "statusCode": "204",
+                                  "responseParameters": {
+                                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                    "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                                    "method.response.header.Access-Control-Max-Age": "'86400'"
+                                  }
+                                }
+                              ]
+                            },
+                            "methodResponses": [
+                              {
+                                "statusCode": "204",
+                                "responseParameters": {
+                                  "method.response.header.Access-Control-Allow-Headers": true,
+                                  "method.response.header.Access-Control-Allow-Origin": true,
+                                  "method.response.header.Access-Control-Allow-Methods": true,
+                                  "method.response.header.Access-Control-Max-Age": true
+                                }
+                              }
+                            ],
+                            "resourceId": {
+                              "Fn::GetAtt": [
+                                "BackendAPI4304626F",
+                                "RootResourceId"
+                              ]
+                            },
+                            "restApiId": {
+                              "Ref": "BackendAPI4304626F"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "{proxy+}": {
+                    "id": "{proxy+}",
+                    "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Resource",
+                          "aws:cdk:cloudformation:props": {
+                            "parentId": {
+                              "Fn::GetAtt": [
+                                "BackendAPI4304626F",
+                                "RootResourceId"
+                              ]
+                            },
+                            "pathPart": "{proxy+}",
+                            "restApiId": {
+                              "Ref": "BackendAPI4304626F"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.CfnResource",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "OPTIONS": {
+                        "id": "OPTIONS",
+                        "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}/OPTIONS",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}/OPTIONS/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "apiKeyRequired": false,
+                                "authorizationType": "NONE",
+                                "httpMethod": "OPTIONS",
+                                "integration": {
+                                  "type": "MOCK",
+                                  "requestTemplates": {
+                                    "application/json": "{ statusCode: 200 }"
+                                  },
+                                  "integrationResponses": [
+                                    {
+                                      "statusCode": "204",
+                                      "responseParameters": {
+                                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                                        "method.response.header.Access-Control-Allow-Origin": "'*'",
+                                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'",
+                                        "method.response.header.Access-Control-Max-Age": "'86400'"
+                                      }
+                                    }
+                                  ]
+                                },
+                                "methodResponses": [
+                                  {
+                                    "statusCode": "204",
+                                    "responseParameters": {
+                                      "method.response.header.Access-Control-Allow-Headers": true,
+                                      "method.response.header.Access-Control-Allow-Origin": true,
+                                      "method.response.header.Access-Control-Allow-Methods": true,
+                                      "method.response.header.Access-Control-Max-Age": true
+                                    }
+                                  }
+                                ],
+                                "resourceId": {
+                                  "Ref": "BackendAPIproxy59D948DC"
+                                },
+                                "restApiId": {
+                                  "Ref": "BackendAPI4304626F"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                          "version": "2.100.0"
+                        }
+                      },
+                      "ANY": {
+                        "id": "ANY",
+                        "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}/ANY",
+                        "children": {
+                          "ApiPermission.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}": {
+                            "id": "ApiPermission.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}",
+                            "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}/ANY/ApiPermission.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "BackendLambdaD93C7B96",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "BackendAPI4304626F"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "BackendAPIDeploymentStageprod69A6990B"
+                                      },
+                                      "/*/*"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                              "version": "2.100.0"
+                            }
+                          },
+                          "ApiPermission.Test.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}": {
+                            "id": "ApiPermission.Test.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}",
+                            "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}/ANY/ApiPermission.Test.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "BackendLambdaD93C7B96",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "BackendAPI4304626F"
+                                      },
+                                      "/test-invoke-stage/*/*"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                              "version": "2.100.0"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "BackendStack-Prod/BackendAPI/Default/{proxy+}/ANY/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "authorizationType": "NONE",
+                                "httpMethod": "ANY",
+                                "integration": {
+                                  "type": "AWS_PROXY",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "BackendLambdaD93C7B96",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST"
+                                },
+                                "resourceId": {
+                                  "Ref": "BackendAPIproxy59D948DC"
+                                },
+                                "restApiId": {
+                                  "Ref": "BackendAPI4304626F"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                              "version": "2.100.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.ProxyResource",
+                      "version": "2.100.0"
+                    }
+                  },
+                  "ANY": {
+                    "id": "ANY",
+                    "path": "BackendStack-Prod/BackendAPI/Default/ANY",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "BackendStack-Prod/BackendAPI/Default/ANY/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                          "aws:cdk:cloudformation:props": {
+                            "authorizationType": "NONE",
+                            "httpMethod": "ANY",
+                            "integration": {
+                              "type": "MOCK"
+                            },
+                            "resourceId": {
+                              "Fn::GetAtt": [
+                                "BackendAPI4304626F",
+                                "RootResourceId"
+                              ]
+                            },
+                            "restApiId": {
+                              "Ref": "BackendAPI4304626F"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                          "version": "2.100.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                      "version": "2.100.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_apigateway.ResourceBase",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_apigateway.RestApi",
+              "version": "2.100.0"
+            }
+          },
+          "ApiEndpoint": {
+            "id": "ApiEndpoint",
+            "path": "BackendStack-Prod/ApiEndpoint",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.100.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "BackendStack-Prod/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "BackendStack-Prod/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.100.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "BackendStack-Prod/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.4.2"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "BackendStack-Prod/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.100.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "BackendStack-Prod/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.100.0"

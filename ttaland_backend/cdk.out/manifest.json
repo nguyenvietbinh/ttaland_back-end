@@ -1,28 +1,28 @@
 {
   "version": "34.0.0",
   "artifacts": {
-    "BackendCdkStack.assets": {
+    "BackendStack-Dev.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
-        "file": "BackendCdkStack.assets.json",
+        "file": "BackendStack-Dev.assets.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
       }
     },
-    "BackendCdkStack": {
+    "BackendStack-Dev": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://unknown-account/unknown-region",
       "properties": {
-        "templateFile": "BackendCdkStack.template.json",
+        "templateFile": "BackendStack-Dev.template.json",
         "terminationProtection": false,
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/7c69c97c12eb1e344a8e942154382c44698e787316e4a7285c42486c68c41500.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8066ba8321030336a1bf13c912c3909dfbf2f865205f2419dd5ec1a65954573d.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
-          "BackendCdkStack.assets"
+          "BackendStack-Dev.assets"
         ],
         "lookupRole": {
           "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
@@ -31,10 +31,10 @@
         }
       },
       "dependencies": [
-        "BackendCdkStack.assets"
+        "BackendStack-Dev.assets"
       ],
       "metadata": {
-        "/BackendCdkStack/UsersTable": [
+        "/BackendStack-Dev/UsersTable": [
           {
             "type": "aws:cdk:hasPhysicalName",
             "data": {
@@ -42,13 +42,13 @@
             }
           }
         ],
-        "/BackendCdkStack/UsersTable/Resource": [
+        "/BackendStack-Dev/UsersTable/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "UsersTable9725E9C8"
           }
         ],
-        "/BackendCdkStack/TownhousesTable": [
+        "/BackendStack-Dev/TownhousesTable": [
           {
             "type": "aws:cdk:hasPhysicalName",
             "data": {
@@ -56,13 +56,13 @@
             }
           }
         ],
-        "/BackendCdkStack/TownhousesTable/Resource": [
+        "/BackendStack-Dev/TownhousesTable/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "TownhousesTable359D7464"
           }
         ],
-        "/BackendCdkStack/VillasTable": [
+        "/BackendStack-Dev/VillasTable": [
           {
             "type": "aws:cdk:hasPhysicalName",
             "data": {
@@ -70,13 +70,13 @@
             }
           }
         ],
-        "/BackendCdkStack/VillasTable/Resource": [
+        "/BackendStack-Dev/VillasTable/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "VillasTable40F3B906"
           }
         ],
-        "/BackendCdkStack/LandTable": [
+        "/BackendStack-Dev/LandTable": [
           {
             "type": "aws:cdk:hasPhysicalName",
             "data": {
@@ -84,13 +84,13 @@
             }
           }
         ],
-        "/BackendCdkStack/LandTable/Resource": [
+        "/BackendStack-Dev/LandTable/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LandTable60E33505"
           }
         ],
-        "/BackendCdkStack/ApartmentsTable": [
+        "/BackendStack-Dev/ApartmentsTable": [
           {
             "type": "aws:cdk:hasPhysicalName",
             "data": {
@@ -98,134 +98,360 @@
             }
           }
         ],
-        "/BackendCdkStack/ApartmentsTable/Resource": [
+        "/BackendStack-Dev/ApartmentsTable/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApartmentsTable5D49A705"
           }
         ],
-        "/BackendCdkStack/BackendImagesBucket/Resource": [
+        "/BackendStack-Dev/BackendImagesBucket/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendImagesBucket32566307"
           }
         ],
-        "/BackendCdkStack/LambdaDynamoDBRole/Resource": [
+        "/BackendStack-Dev/LambdaDynamoDBRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LambdaDynamoDBRole8A842A29"
           }
         ],
-        "/BackendCdkStack/LambdaDynamoDBRole/DefaultPolicy/Resource": [
+        "/BackendStack-Dev/LambdaDynamoDBRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LambdaDynamoDBRoleDefaultPolicy161A9135"
           }
         ],
-        "/BackendCdkStack/BackendLambda/Resource": [
+        "/BackendStack-Dev/BackendLambda/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendLambdaD93C7B96"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Resource": [
+        "/BackendStack-Dev/BackendAPI/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPI4304626F"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Deployment/Resource": [
+        "/BackendStack-Dev/BackendAPI/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BackendAPIDeployment55E9271A209ae8c27c7c5940f65a7ad190096e0f"
+            "data": "BackendAPIDeployment55E9271A66003940e26c43bfc6cc1e274b8f7714"
           }
         ],
-        "/BackendCdkStack/BackendAPI/DeploymentStage.prod/Resource": [
+        "/BackendStack-Dev/BackendAPI/DeploymentStage.dev/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BackendAPIDeploymentStageprod69A6990B"
+            "data": "BackendAPIDeploymentStagedev4FD2E4EB"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Endpoint": [
+        "/BackendStack-Dev/BackendAPI/Endpoint": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIEndpointE47D1CC2"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Default/OPTIONS/Resource": [
+        "/BackendStack-Dev/BackendAPI/Default/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIOPTIONS581B7095"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Default/{proxy+}/Resource": [
+        "/BackendStack-Dev/BackendAPI/Default/{proxy+}/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIproxy59D948DC"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Default/{proxy+}/OPTIONS/Resource": [
+        "/BackendStack-Dev/BackendAPI/Default/{proxy+}/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIproxyOPTIONS108133B2"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Default/{proxy+}/ANY/ApiPermission.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}": [
+        "/BackendStack-Dev/BackendAPI/Default/{proxy+}/ANY/ApiPermission.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BackendAPIproxyANYApiPermissionBackendCdkStackBackendAPI20ADE104ANYproxy60F9019E"
+            "data": "BackendAPIproxyANYApiPermissionBackendStackDevBackendAPI66B0C815ANYproxy49CBF4A3"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Default/{proxy+}/ANY/ApiPermission.Test.BackendCdkStackBackendAPI20ADE104.ANY..{proxy+}": [
+        "/BackendStack-Dev/BackendAPI/Default/{proxy+}/ANY/ApiPermission.Test.BackendStackDevBackendAPI66B0C815.ANY..{proxy+}": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "BackendAPIproxyANYApiPermissionTestBackendCdkStackBackendAPI20ADE104ANYproxyAE7628C4"
+            "data": "BackendAPIproxyANYApiPermissionTestBackendStackDevBackendAPI66B0C815ANYproxy115EC608"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Default/{proxy+}/ANY/Resource": [
+        "/BackendStack-Dev/BackendAPI/Default/{proxy+}/ANY/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIproxyANY00DF3034"
           }
         ],
-        "/BackendCdkStack/BackendAPI/Default/ANY/Resource": [
+        "/BackendStack-Dev/BackendAPI/Default/ANY/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendAPIANYF9F7927B"
           }
         ],
-        "/BackendCdkStack/ApiEndpoint": [
+        "/BackendStack-Dev/ApiEndpoint": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApiEndpoint"
           }
         ],
-        "/BackendCdkStack/CDKMetadata/Default": [
+        "/BackendStack-Dev/CDKMetadata/Default": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadata"
           }
         ],
-        "/BackendCdkStack/CDKMetadata/Condition": [
+        "/BackendStack-Dev/CDKMetadata/Condition": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CDKMetadataAvailable"
           }
         ],
-        "/BackendCdkStack/BootstrapVersion": [
+        "/BackendStack-Dev/BootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "BootstrapVersion"
           }
         ],
-        "/BackendCdkStack/CheckBootstrapVersion": [
+        "/BackendStack-Dev/CheckBootstrapVersion": [
           {
             "type": "aws:cdk:logicalId",
             "data": "CheckBootstrapVersion"
           }
         ]
       },
-      "displayName": "BackendCdkStack"
+      "displayName": "BackendStack-Dev"
+    },
+    "BackendStack-Prod.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "BackendStack-Prod.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "BackendStack-Prod": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "BackendStack-Prod.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ee2ff816316500d2678ef12c23248748d3b0d26f53d4597b229d50070c0a82bb.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "BackendStack-Prod.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "BackendStack-Prod.assets"
+      ],
+      "metadata": {
+        "/BackendStack-Prod/UsersTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "UsersTable9725E9C8"
+            }
+          }
+        ],
+        "/BackendStack-Prod/UsersTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UsersTable9725E9C8"
+          }
+        ],
+        "/BackendStack-Prod/TownhousesTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "TownhousesTable359D7464"
+            }
+          }
+        ],
+        "/BackendStack-Prod/TownhousesTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "TownhousesTable359D7464"
+          }
+        ],
+        "/BackendStack-Prod/VillasTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "VillasTable40F3B906"
+            }
+          }
+        ],
+        "/BackendStack-Prod/VillasTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VillasTable40F3B906"
+          }
+        ],
+        "/BackendStack-Prod/LandTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "LandTable60E33505"
+            }
+          }
+        ],
+        "/BackendStack-Prod/LandTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LandTable60E33505"
+          }
+        ],
+        "/BackendStack-Prod/ApartmentsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "ApartmentsTable5D49A705"
+            }
+          }
+        ],
+        "/BackendStack-Prod/ApartmentsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApartmentsTable5D49A705"
+          }
+        ],
+        "/BackendStack-Prod/BackendImagesBucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendImagesBucket32566307"
+          }
+        ],
+        "/BackendStack-Prod/LambdaDynamoDBRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaDynamoDBRole8A842A29"
+          }
+        ],
+        "/BackendStack-Prod/LambdaDynamoDBRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaDynamoDBRoleDefaultPolicy161A9135"
+          }
+        ],
+        "/BackendStack-Prod/BackendLambda/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendLambdaD93C7B96"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPI4304626F"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIDeployment55E9271A53449e33726dc923c7931452de5c6fdb"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIDeploymentStageprod69A6990B"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIEndpointE47D1CC2"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Default/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIOPTIONS581B7095"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Default/{proxy+}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproxy59D948DC"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Default/{proxy+}/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproxyOPTIONS108133B2"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Default/{proxy+}/ANY/ApiPermission.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproxyANYApiPermissionBackendStackProdBackendAPI820E99FBANYproxy50D11863"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Default/{proxy+}/ANY/ApiPermission.Test.BackendStackProdBackendAPI820E99FB.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproxyANYApiPermissionTestBackendStackProdBackendAPI820E99FBANYproxy66B04A28"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Default/{proxy+}/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIproxyANY00DF3034"
+          }
+        ],
+        "/BackendStack-Prod/BackendAPI/Default/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendAPIANYF9F7927B"
+          }
+        ],
+        "/BackendStack-Prod/ApiEndpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiEndpoint"
+          }
+        ],
+        "/BackendStack-Prod/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/BackendStack-Prod/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/BackendStack-Prod/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/BackendStack-Prod/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "BackendStack-Prod"
     },
     "Tree": {
       "type": "cdk:tree",

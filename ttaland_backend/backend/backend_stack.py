@@ -13,10 +13,8 @@ from constructs import Construct
 import os
 
 class BackendStack(Stack):
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, stage: str = "dev", **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
-
-
 
 
         # ----- create tables -----
@@ -24,42 +22,42 @@ class BackendStack(Stack):
         # Users table
         users_table = dynamodb.Table(
             self, "UsersTable",
-            table_name="Users_table",
+            table_name=f"Users_table-{stage}",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.RETAIN
+            removal_policy=RemovalPolicy.DESTROY if stage == "dev" else RemovalPolicy.RETAIN
         )
         # Townhouses table
         townhouses_table = dynamodb.Table(
             self, "TownhousesTable",
-            table_name="Townhouses_table",
+            table_name=f"Townhouses_table-{stage}",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.RETAIN
+            removal_policy=RemovalPolicy.DESTROY if stage == "dev" else RemovalPolicy.RETAIN
         )
         # Villas table
         villas_table = dynamodb.Table(
             self, "VillasTable",
-            table_name="Villas_table",
+            table_name=f"Villas_table-{stage}",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.RETAIN
+            removal_policy=RemovalPolicy.DESTROY if stage == "dev" else RemovalPolicy.RETAIN
         )
         # Land table
         land_table = dynamodb.Table(
             self, "LandTable",
-            table_name="Land_table",
+            table_name=f"Land_table-{stage}",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.RETAIN
+            removal_policy=RemovalPolicy.DESTROY if stage == "dev" else RemovalPolicy.RETAIN
         )
         # Apartments table
         apartments_table = dynamodb.Table(
             self, "ApartmentsTable",
-            table_name="Apartments_table",
+            table_name=f"Apartments_table-{stage}",
             partition_key=dynamodb.Attribute(name="id", type=dynamodb.AttributeType.STRING),
             billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-            removal_policy=RemovalPolicy.RETAIN
+            removal_policy=RemovalPolicy.DESTROY if stage == "dev" else RemovalPolicy.RETAIN
         )
 
 
@@ -67,10 +65,10 @@ class BackendStack(Stack):
         
         bucket = s3.Bucket(
             self, "BackendImagesBucket",
-            bucket_name="ttaland-backend-images",
+            bucket_name=f"ttaland-backend-images-{stage}",
             versioned=False,
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
-            removal_policy=RemovalPolicy.RETAIN,
+            removal_policy=RemovalPolicy.DESTROY if stage == "dev" else RemovalPolicy.RETAIN,
             auto_delete_objects=False
         )
         
@@ -119,20 +117,22 @@ class BackendStack(Stack):
 
         api = apigw.RestApi(
             self, "BackendAPI",
-            rest_api_name="Backend API",
-            description="API for TTALand",
+            rest_api_name=f"Backend-API-{stage}",
+            description=f"API for {stage} TTALand",
             default_cors_preflight_options=apigw.CorsOptions(
                 allow_origins=apigw.Cors.ALL_ORIGINS,
                 allow_methods=apigw.Cors.ALL_METHODS,
                 allow_headers=apigw.Cors.DEFAULT_HEADERS,
                 max_age=Duration.days(1)
+            ),
+            deploy_options=apigw.StageOptions(
+                stage_name=stage
             )
         )
 
 
         
         # ----- add endpoint -----
-
 
         api.root.add_proxy(
             default_integration=apigw.LambdaIntegration(backend_lambda),
