@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/8066ba8321030336a1bf13c912c3909dfbf2f865205f2419dd5ec1a65954573d.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3870b57e0e47c34b37465321f3efa03642b0cb431a563f3372f4074349a36499.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -108,6 +108,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendImagesBucket32566307"
+          }
+        ],
+        "/BackendStack-Dev/BackendImagesBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendImagesBucketPolicy4D685019"
           }
         ],
         "/BackendStack-Dev/LambdaDynamoDBRole/Resource": [
@@ -244,7 +250,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/ee2ff816316500d2678ef12c23248748d3b0d26f53d4597b229d50070c0a82bb.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a7246ef909e38851683da22da1368ad1d5039b831a13ae19b6bc358dc6e05895.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -334,6 +340,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "BackendImagesBucket32566307"
+          }
+        ],
+        "/BackendStack-Prod/BackendImagesBucket/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BackendImagesBucketPolicy4D685019"
           }
         ],
         "/BackendStack-Prod/LambdaDynamoDBRole/Resource": [

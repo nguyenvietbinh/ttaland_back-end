@@ -67,10 +67,26 @@ class BackendStack(Stack):
             self, "BackendImagesBucket",
             bucket_name=f"ttaland-backend-images-{stage}",
             versioned=False,
-            block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
+            block_public_access=s3.BlockPublicAccess.BLOCK_ACLS,
+            public_read_access=True,
             removal_policy=RemovalPolicy.DESTROY if stage == "dev" else RemovalPolicy.RETAIN,
-            auto_delete_objects=False
+            auto_delete_objects=False,
+            cors=[
+                s3.CorsRule(
+                    allowed_methods=[
+                        s3.HttpMethods.GET,
+                        s3.HttpMethods.PUT,
+                        s3.HttpMethods.POST,
+                        s3.HttpMethods.HEAD,
+                    ],
+                    allowed_origins=["*"],
+                    allowed_headers=["*"],
+                    exposed_headers=["ETag"],
+                    max_age=3000,
+                )
+            ]
         )
+
         
 
 
