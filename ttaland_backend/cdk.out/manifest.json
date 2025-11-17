@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0c73bd168c3563a23fb0c287f51be835df6491e3ecf9ab6863663b0797682281.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/2aaa3a20c0fa567ad99196a89cb41d392a7f3c5a652ce784f945a59bf779f08c.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -102,6 +102,20 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ApartmentsTable5D49A705"
+          }
+        ],
+        "/BackendStack-Dev/NewsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "NewsTable7ADA03DE"
+            }
+          }
+        ],
+        "/BackendStack-Dev/NewsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NewsTable7ADA03DE"
           }
         ],
         "/BackendStack-Dev/BackendImagesBucket/Resource": [
@@ -250,7 +264,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6097d38bd42f62e2a603b8156a3c35ec476c442dc9da63e7530852549c1ca0b8.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/52585b35306bf3fb9f21e8f51cae3b060df12a6ef30fe370782750394baed89c.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -334,6 +348,20 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ApartmentsTable5D49A705"
+          }
+        ],
+        "/BackendStack-Prod/NewsTable": [
+          {
+            "type": "aws:cdk:hasPhysicalName",
+            "data": {
+              "Ref": "NewsTable7ADA03DE"
+            }
+          }
+        ],
+        "/BackendStack-Prod/NewsTable/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NewsTable7ADA03DE"
           }
         ],
         "/BackendStack-Prod/BackendImagesBucket/Resource": [

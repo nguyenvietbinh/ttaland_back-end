@@ -120,6 +120,30 @@
     "aws:cdk:path": "BackendStack-Prod/ApartmentsTable/Resource"
    }
   },
+  "NewsTable7ADA03DE": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "id",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "KeySchema": [
+     {
+      "AttributeName": "id",
+      "KeyType": "HASH"
+     }
+    ],
+    "TableName": "News_table-prod"
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "BackendStack-Prod/NewsTable/Resource"
+   }
+  },
   "BackendImagesBucket32566307": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
@@ -264,6 +288,12 @@
         },
         {
          "Fn::GetAtt": [
+          "NewsTable7ADA03DE",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::GetAtt": [
           "TownhousesTable359D7464",
           "Arn"
          ]
@@ -343,7 +373,7 @@
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "ab14afb64e3b91d559f17fbe89de22efbf250edecff80a04de47e26e9e0d1a89.zip"
+     "S3Key": "754324ab956309db4709426de6cae1b320b31cc2484504a4219020a407740d35.zip"
     },
     "Environment": {
      "Variables": {
@@ -361,6 +391,9 @@
       },
       "APARTMENT_TABLE": {
        "Ref": "ApartmentsTable5D49A705"
+      },
+      "NEWS_TABLE": {
+       "Ref": "NewsTable7ADA03DE"
       },
       "IMAGES_BUCKET": {
        "Ref": "BackendImagesBucket32566307"
@@ -383,7 +416,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "BackendStack-Prod/BackendLambda/Resource",
-    "aws:asset:path": "asset.ab14afb64e3b91d559f17fbe89de22efbf250edecff80a04de47e26e9e0d1a89",
+    "aws:asset:path": "asset.754324ab956309db4709426de6cae1b320b31cc2484504a4219020a407740d35",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }

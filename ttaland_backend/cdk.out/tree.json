@@ -233,6 +233,51 @@
               "version": "2.100.0"
             }
           },
+          "NewsTable": {
+            "id": "NewsTable",
+            "path": "BackendStack-Dev/NewsTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Dev/NewsTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "tableName": "News_table-dev"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.100.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "BackendStack-Dev/NewsTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.100.0"
+            }
+          },
           "BackendImagesBucket": {
             "id": "BackendImagesBucket",
             "path": "BackendStack-Dev/BackendImagesBucket",
@@ -429,6 +474,12 @@
                                 },
                                 {
                                   "Fn::GetAtt": [
+                                    "NewsTable7ADA03DE",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::GetAtt": [
                                     "TownhousesTable359D7464",
                                     "Arn"
                                   ]
@@ -555,7 +606,7 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "ab14afb64e3b91d559f17fbe89de22efbf250edecff80a04de47e26e9e0d1a89.zip"
+                      "s3Key": "754324ab956309db4709426de6cae1b320b31cc2484504a4219020a407740d35.zip"
                     },
                     "environment": {
                       "variables": {
@@ -573,6 +624,9 @@
                         },
                         "APARTMENT_TABLE": {
                           "Ref": "ApartmentsTable5D49A705"
+                        },
+                        "NEWS_TABLE": {
+                          "Ref": "NewsTable7ADA03DE"
                         },
                         "IMAGES_BUCKET": {
                           "Ref": "BackendImagesBucket32566307"
@@ -1331,6 +1385,51 @@
               "version": "2.100.0"
             }
           },
+          "NewsTable": {
+            "id": "NewsTable",
+            "path": "BackendStack-Prod/NewsTable",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "BackendStack-Prod/NewsTable/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
+                  "aws:cdk:cloudformation:props": {
+                    "attributeDefinitions": [
+                      {
+                        "attributeName": "id",
+                        "attributeType": "S"
+                      }
+                    ],
+                    "billingMode": "PAY_PER_REQUEST",
+                    "keySchema": [
+                      {
+                        "attributeName": "id",
+                        "keyType": "HASH"
+                      }
+                    ],
+                    "tableName": "News_table-prod"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_dynamodb.CfnTable",
+                  "version": "2.100.0"
+                }
+              },
+              "ScalingRole": {
+                "id": "ScalingRole",
+                "path": "BackendStack-Prod/NewsTable/ScalingRole",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.100.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_dynamodb.Table",
+              "version": "2.100.0"
+            }
+          },
           "BackendImagesBucket": {
             "id": "BackendImagesBucket",
             "path": "BackendStack-Prod/BackendImagesBucket",
@@ -1527,6 +1626,12 @@
                                 },
                                 {
                                   "Fn::GetAtt": [
+                                    "NewsTable7ADA03DE",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::GetAtt": [
                                     "TownhousesTable359D7464",
                                     "Arn"
                                   ]
@@ -1653,7 +1758,7 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "ab14afb64e3b91d559f17fbe89de22efbf250edecff80a04de47e26e9e0d1a89.zip"
+                      "s3Key": "754324ab956309db4709426de6cae1b320b31cc2484504a4219020a407740d35.zip"
                     },
                     "environment": {
                       "variables": {
@@ -1671,6 +1776,9 @@
                         },
                         "APARTMENT_TABLE": {
                           "Ref": "ApartmentsTable5D49A705"
+                        },
+                        "NEWS_TABLE": {
+                          "Ref": "NewsTable7ADA03DE"
                         },
                         "IMAGES_BUCKET": {
                           "Ref": "BackendImagesBucket32566307"
